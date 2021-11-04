@@ -19,12 +19,12 @@ antigen theme romkatv/powerlevel10k
 antigen apply
 if [[ ! -e .zsh/config.zsh ]]; then
   echo "Downloading missing config.zsh"
-  curl --silent -L raw.githubusercontent.com/Rijul-A/manjaro-zsh-config/7253e5e6d3bb41fc75983603198a509dff39b004/manjaro-zsh-config > .zsh/config.zsh
+  curl --silent -L https://raw.githubusercontent.com/Rijul-A/manjaro-zsh-config/master/manjaro-zsh-config > .zsh/config.zsh
 fi
 source .zsh/config.zsh
 if [[ ! -e .zsh/p10k.zsh ]]; then
   echo "Downloading missing p10k.zsh"
-  curl --silent -L https://raw.githubusercontent.com/Rijul-A/manjaro-zsh-config/7253e5e6d3bb41fc75983603198a509dff39b004/p10k.zsh > .zsh/p10k.zsh
+  curl --silent -L https://raw.githubusercontent.com/Rijul-A/manjaro-zsh-config/master/p10k.zsh > .zsh/p10k.zsh
 fi
 source .zsh/p10k.zsh
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
