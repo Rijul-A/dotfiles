@@ -1,6 +1,6 @@
 # this will download everything, if it does not exist
 if [[ ! -e ~/.zsh/antigen.zsh ]]; then
-  echo "Dowloading missing antigen.zsh"
+  echo "Downloading missing antigen.zsh"
   curl --silent -L git.io/antigen > ~/.zsh/antigen.zsh
 fi
 source ~/.zsh/antigen.zsh
