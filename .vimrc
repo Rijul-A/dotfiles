@@ -31,6 +31,7 @@ set showcmd
 set mouse=a
 set number
 set cursorline
+hi CursorLine term=bold cterm=bold guibg=Grey40
 set cursorcolumn
 set whichwrap=bs<>[]
 set laststatus=2
