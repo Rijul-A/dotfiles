@@ -59,3 +59,6 @@ filetype plugin indent on
 au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru} set ft=ruby
 au BufRead,BufNewFile *.html.erb set ft=eruby
 au BufNewFile,BufRead *.json set ft=json syntax=javascript
+vnoremap y "+y
+noremap <C-c> "+y
+noremap <C-v> "+p
