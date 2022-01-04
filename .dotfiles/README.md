@@ -14,12 +14,6 @@ rsync --recursive --verbose --exclude '.git' dotfiles-tmp/ $HOME/
 rm --recursive dotfiles-tmp
 ```
 
-## Configuration
-```sh
-dotfiles config status.showUntrackedFiles no
-dotfiles remote set-url origin git@github.com:Rijul-A/dotfiles.git
-```
-
 ## Usage
 ```sh
 dotfiles status

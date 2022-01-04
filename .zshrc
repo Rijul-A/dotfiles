@@ -1,6 +1,7 @@
 source ~/.zsh/init.zsh
 
 alias dotfiles="TZ=UTC /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
+dotfiles config status.showUntrackedFiles no
 alias zsh_reset="rm -rf ~/.zsh/config.zsh ~/.zsh/antigen.zsh"
 alias mv="mv -i"
 alias git="TZ=UTC /usr/bin/git"
