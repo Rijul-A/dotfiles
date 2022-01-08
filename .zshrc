@@ -8,7 +8,7 @@ alias git="TZ=UTC /usr/bin/git"
 TZ=UTC /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME config status.showUntrackedFiles no
 
 export SSH_AUTH_SOCK="/run/user/1000/ssh-agent.socket"
-export PATH=~/go/bin:$PATH
+export PATH=~/.local/bin:~/go/bin:$PATH
 export EDITOR=vim
 
 mcd () {
