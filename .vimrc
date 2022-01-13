@@ -18,6 +18,7 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 
 call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-sensible'
+Plug 'tomlion/vim-solidity'
 call plug#end()
 
 set nocompatible
