@@ -10,6 +10,7 @@ TZ=UTC /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME config status.s
 export SSH_AUTH_SOCK="/run/user/1000/ssh-agent.socket"
 export PATH=~/.local/bin:~/go/bin:$PATH
 export EDITOR=vim
+export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 
 mcd () {
     mkdir -p "$1"
