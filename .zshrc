@@ -10,7 +10,7 @@ TZ=UTC /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME config status.s
 export SSH_AUTH_SOCK="/run/user/1000/ssh-agent.socket"
 export PATH=~/.local/bin:~/go/bin:$PATH
 export EDITOR=vim
-export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=/usr/local/lib
 NPM_PACKAGES="${HOME}/.npm-packages"
 export PATH="$PATH:$NPM_PACKAGES/bin"
 # Preserve MANPATH if you already defined it somewhere in your config.
@@ -20,4 +20,23 @@ export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
 mcd () {
     mkdir -p "$1"
     cd "$1"
+}
+
+gitRemoteToSSH () {
+    existing=$(git config remote.origin.url)
+    if grep -q "git@" <<< "$existing"; then echo "no change needed"; return; fi
+    # replace HTTPS:// with git@
+    replaced=$(echo "$existing" | sed "s/https:\/\//git@/")
+    # now replace first slash with :
+    replaced=$(echo "$replaced" | sed "s/\//:/")
+    git config remote.origin.url "$replaced"
+    echo "Changed to $(git config remote.origin.url)"
+}
+gitRemoteToHTTPS () {
+    existing=$(git config remote.origin.url)
+    if grep -q "https://" <<< "$existing"; then echo "no change needed"; return; fi
+    replaced=$(echo "$existing" | sed "s/git@/https:\/\//")
+    replaced=$(echo "$replaced" | sed "s/:/\//2")
+    git config remote.origin.url "$replaced"
+    echo "Changed to $(git config remote.origin.url)"
 }
