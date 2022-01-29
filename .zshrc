@@ -8,7 +8,7 @@ alias git="TZ=UTC /usr/bin/git"
 TZ=UTC /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME config status.showUntrackedFiles no
 
 export SSH_AUTH_SOCK="/run/user/1000/ssh-agent.socket"
-export PATH=~/.local/bin:~/go/bin:$PATH
+export PATH=~/.local/share/gem/ruby/3.0.0/bin:~/.local/bin:~/go/bin:$PATH
 export EDITOR=vim
 export LD_LIBRARY_PATH=/usr/local/lib
 NPM_PACKAGES="${HOME}/.npm-packages"
