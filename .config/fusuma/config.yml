@@ -16,10 +16,10 @@ pinch:
       command: ydotool key Super+Down # Restore
       threshold: 0.5
   4:
-    in:
+    in: # Show Desktop
       command: ydotool key Super+d
       threshold: 0.5
-    out:
+    out: # Quit
       command: ydotool key Super+q
       threshold: 0.5
 swipe:
@@ -36,14 +36,14 @@ swipe:
         interval: 4
     end:
       command: ydotool key --up Alt
-  4: # Take Window to workspace
-    left:
+  4:
+    left: # Take window to workspace
       command: ydotool key Shift+Ctrl+Alt+Left
       threshold: 0.1
     right:
       command: ydotool key Shift+Ctrl+Alt+Right
       threshold: 0.1
-    up:
+    up:   # Take window to monitor
       command: ydotool key Ctrl+Super+Up
       threshold: 0.1
     down:
