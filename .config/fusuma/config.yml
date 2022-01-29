@@ -1,0 +1,51 @@
+hold:
+  3:
+    end:
+      command: ydotool key Super+z # PopOS launcher
+      threshold: 0.5
+  4:
+    end:
+      command: ydotool key Super+a # Overview
+      threshold: 0.5
+pinch:
+  3:
+    in:
+      command: ydotool key Super+Up # Maximize
+      threshold: 0.5
+    out:
+      command: ydotool key Super+Down # Restore
+      threshold: 0.5
+  4:
+    in:
+      command: ydotool key Super+d
+      threshold: 0.5
+    out:
+      command: ydotool key Super+q
+      threshold: 0.5
+swipe:
+  3: # Switch Windows Using Alt Tab
+    begin:
+      command: ydotool key --down Alt
+    down:
+      update:
+        command: ydotool key Tab
+        interval: 4
+    up:
+      update:
+        command: ydotool key Shift+Tab
+        interval: 4
+    end:
+      command: ydotool key --up Alt
+  4: # Take Window to workspace
+    left:
+      command: ydotool key Shift+Ctrl+Alt+Left
+      threshold: 0.1
+    right:
+      command: ydotool key Shift+Ctrl+Alt+Right
+      threshold: 0.1
+    up:
+      command: ydotool key Ctrl+Super+Up
+      threshold: 0.1
+    down:
+      command: ydotool key Ctrl+Super+Down
+      threshold: 0.1
