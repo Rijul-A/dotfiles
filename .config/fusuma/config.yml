@@ -29,11 +29,11 @@ swipe:
     down:
       update:
         command: ydotool key Tab
-        interval: 4
+        interval: 5
     up:
       update:
         command: ydotool key Shift+Tab
-        interval: 4
+        interval: 5
     end:
       command: ydotool key --up Alt
   4:
