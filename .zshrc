@@ -24,7 +24,8 @@ mcd () {
 
 gitRemoteToSSH () {
     existing=$(git config remote.origin.url)
-    if grep -q "git@" <<< "$existing"; then echo "no change needed"; return; fi
+    if [ -z "$existing" ]; then echo "Could not figure out existing url"; return; fi
+    if grep -q "git@" <<< "$existing"; then echo "No change needed"; return; fi
     # replace HTTPS:// with git@
     replaced=$(echo "$existing" | sed "s/https:\/\//git@/")
     # now replace first slash with :
@@ -34,7 +35,8 @@ gitRemoteToSSH () {
 }
 gitRemoteToHTTPS () {
     existing=$(git config remote.origin.url)
-    if grep -q "https://" <<< "$existing"; then echo "no change needed"; return; fi
+    if [ -z "$existing" ]; then echo "Could not figure out existing url"; return; fi
+    if grep -q "https://" <<< "$existing"; then echo "No change needed"; return; fi
     replaced=$(echo "$existing" | sed "s/git@/https:\/\//")
     replaced=$(echo "$replaced" | sed "s/:/\//2")
     git config remote.origin.url "$replaced"
