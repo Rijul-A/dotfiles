@@ -45,3 +45,5 @@ gitRemoteToHTTPS () {
     git config remote.origin.url "$replaced"
     echo "Changed to $(git config remote.origin.url)"
 }
+
+eval $(thefuck --alias)
