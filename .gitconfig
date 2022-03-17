@@ -1,5 +1,6 @@
 [core]
 	editor = vim
+	hooksPath = .githooks
 [gpg]
 	program = gpg2
 [init]
