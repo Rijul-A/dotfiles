@@ -1,5 +1,4 @@
 [core]
-	pager = diff-so-fancy | less --tabs=4 -RFX
 	editor = vim
 [gpg]
 	program = gpg2
@@ -9,3 +8,5 @@
 	tool = vimdiff
 [pull]
 	rebase = false
+[alias]
+	diff = dsf

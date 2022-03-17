@@ -15,6 +15,7 @@ antigen bundle docker-compose
 antigen bundle history-substring-search
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle z-shell/zsh-diff-so-fancy@main
 antigen theme romkatv/powerlevel10k
 antigen apply
 if [[ ! -e ~/.zsh/config.zsh ]]; then
