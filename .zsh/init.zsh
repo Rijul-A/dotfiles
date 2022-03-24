@@ -4,7 +4,7 @@ if [[ ! -e ~/.zsh/antigen.zsh ]]; then
   curl --silent -L git.io/antigen > ~/.zsh/antigen.zsh
 fi
 source ~/.zsh/antigen.zsh
-MAGIC_ENTER_GIT_COMMAND='git status -u .'
+MAGIC_ENTER_GIT_COMMAND='git status'
 MAGIC_ENTER_OTHER_COMMAND='ls --color=auto -lth .'
 antigen use oh-my-zsh
 antigen bundle adb
