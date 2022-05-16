@@ -5,7 +5,7 @@ if [[ ! -e ~/.zsh/antigen.zsh ]]; then
 fi
 source ~/.zsh/antigen.zsh
 MAGIC_ENTER_GIT_COMMAND='git status'
-MAGIC_ENTER_OTHER_COMMAND='ls --color=auto -lth .'
+MAGIC_ENTER_OTHER_COMMAND='ls --color=auto -lth'
 antigen use oh-my-zsh
 antigen bundle adb
 antigen bundle git

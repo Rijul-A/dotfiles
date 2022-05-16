@@ -18,7 +18,7 @@ TZ=UTC /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME config status.s
 
 thisHostname=$(hostname -s)
 if [[ "$thisHostname" = "laptop" ]]; then
-    export SSH_AUTH_SOCK="/run/user/1000/ssh-agent.socket" # for KeePass SSH set up
+    export SSH_AUTH_SOCK="/run/user/1000/ssh-agent.socket"
 fi
 
 mcd () {
