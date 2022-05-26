@@ -13,3 +13,4 @@
 	diff = dsf
 	unstage = reset HEAD --
 	last = log -1 HEAD
+	squash = "!f(){ git reset --soft HEAD~${1} && git commit ${2} --edit -m\"$(git log --format=%B --reverse HEAD..HEAD@{1})\"; };f"
