@@ -48,3 +48,7 @@ gitRemoteToHTTPS () {
 }
 
 eval $(thefuck --alias)
+
+if [[ -e ~/.zsh/additional.zsh ]]; then
+    source ~/.zsh/additional.zsh
+fi
