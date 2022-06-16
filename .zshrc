@@ -21,8 +21,7 @@ alias userctl="/usr/bin/systemctl --user"
 
 TZ=UTC /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME config status.showUntrackedFiles no
 
-thisHostname=$(hostname -s)
-if [[ "$thisHostname" = "laptop" ]]; then
+if which keepassxc > /dev/null 2>&1 ; then
     export SSH_AUTH_SOCK="/run/user/1000/ssh-agent.socket"
 fi
 
