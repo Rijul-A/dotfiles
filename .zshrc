@@ -1,6 +1,6 @@
-export PATH=~/.local/share/gem/ruby/3.0.0/bin:~/.local/bin:~/go/bin:$PATH
+export PATH=~/.local/share/gem/ruby/3.0.0/bin:~/.local/bin:~/go/bin:/usr/local/go/bin:$PATH
 export EDITOR=vim
-export LD_LIBRARY_PATH=/usr/local/lib
+export LD_LIBRARY_PATH=/usr/local/lib:/usr/lib
 NPM_PACKAGES="${HOME}/.npm-packages"
 export PATH="$PATH:$NPM_PACKAGES/bin"
 # Preserve MANPATH if you already defined it somewhere in your config.
@@ -10,6 +10,7 @@ export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/share/man"
 export GOPROXY="direct"
 # prevent creation of ~/.lesshst
 export LESSHISTFILE=-
+export GPG_TTY=$(tty)
 
 source ~/.zsh/init.zsh
 

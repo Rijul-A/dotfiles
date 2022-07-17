@@ -1,51 +1,65 @@
 hold:
   3:
     end:
-      command: ydotool key Super+z # PopOS launcher
+      # Super + z = PopOS Launcher
+      command: ydotool key 125:1 44:1 44:0 125:0
       threshold: 0.5
   4:
     end:
-      command: ydotool key Super+a # Overview
+      # Super + a = Overview
+      command: ydotool key 125:1 30:1 30:0 125:0
       threshold: 0.5
 pinch:
   3:
     in:
-      command: ydotool key Super+Up # Maximize
+      # Super + Up = Maximize
+      command: ydotool key 125:1 103:1 103:0 125:0
       threshold: 0.5
     out:
-      command: ydotool key Super+Down # Restore
+      # Super + Down = Minimize
+      command: ydotool key 125:1 108:1 108:0 125:0
       threshold: 0.5
   4:
-    in: # Show Desktop
-      command: ydotool key Super+d
+    in:
+      # Super + d = Show Desktop
+      command: ydotool key 125:1 32:1 32:0 125:0
       threshold: 0.5
-    out: # Quit
-      command: ydotool key Super+q
+    out:
+      # Super + q = Quit
+      command: ydotool key 125:1 16:1 16:0 125:0
       threshold: 0.5
 swipe:
-  3: # Switch Windows Using Alt Tab
-    begin:
-      command: ydotool key --down Alt
-    down:
-      update:
-        command: ydotool key Tab
-        interval: 5
-    up:
-      update:
-        command: ydotool key Shift+Tab
-        interval: 5
-    end:
-      command: ydotool key --up Alt
+  # 3: # Alt Tab up/down
+  #   begin:
+  #     # Alt Down
+  #     command: ydotool key 56:1
+  #   down:
+  #     update:
+  #       # Tab
+  #       command: ydotool key 15:1 15:0
+  #       interval: 5
+  #   up:
+  #     update:
+  #       # Shift + Tab
+  #       command: ydotool key 42:1 15:1 15:0 42:0
+  #       interval: 5
+  #   end:
+  #     # Alt Up
+  #     command: ydotool key 56:0
   4:
-    left: # Take window to workspace
-      command: ydotool key Shift+Ctrl+Alt+Left
+    left:
+      # Shift + Ctrl + Alt + Left = Take window to left workspace
+      command: ydotool key 42:1 29:1 56:1 105:1 105:0 56:0 29:0 42:0
       threshold: 0.1
     right:
-      command: ydotool key Shift+Ctrl+Alt+Right
+      # Shift + Ctrl + Alt + Right = Take window to right workspace
+      command: ydotool key 42:1 29:1 56:1 106:1 106:0 56:0 29:0 42:0
       threshold: 0.1
-    up:   # Take window to monitor
-      command: ydotool key Ctrl+Super+Up
+    up:
+      # Shift + Super + Left = Move window to left  monitor
+      command: ydotool key 42:1 125:1 105:1 105:0 125:0 42:0
       threshold: 0.1
     down:
-      command: ydotool key Ctrl+Super+Down
+      # Shift + Super + Right = Move window to right monitor
+      command: ydotool key 42:1 125:1 106:1 106:0 125:0 42:0
       threshold: 0.1

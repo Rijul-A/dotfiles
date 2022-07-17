@@ -1,1 +1,7 @@
-/usr/share/applications/fusuma.desktop
+[Desktop Entry]
+Type=Application
+Terminal=false
+Name=fusuma daemon
+Exec=/home/user/.local/share/gem/ruby/3.0.0/bin/fusuma
+Comment=Touchpad gestures
+Categories=GNOME;GTK;System;

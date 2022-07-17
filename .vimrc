@@ -63,3 +63,4 @@ au BufNewFile,BufRead *.json set ft=json syntax=javascript
 vnoremap y "+y
 noremap <C-c> "+y
 noremap <C-v> "+p
+:command! Vb :execute "normal! \<C-v>"
