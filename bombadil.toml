@@ -4,14 +4,11 @@ dotfiles_dir = "Desktop/dotfiles"
 prehooks = [ "mkdir -p ~/.zsh", "mkdir -p ~/.config/Code/User" ]
 
 [settings.dots]
-## Singular files
 gitconfig = { source = "gitconfig", target = ".gitconfig" }
 npmrc = { source = "npmrc", target = ".npmrc" }
 tmuxconf = { source = "tmuxconf", target = ".tmux.conf" }
 vimrc = { source = "vimrc", target = ".vimrc" }
 zshrc = { source = "zshrc", target = ".zshrc" }
 zsh_init = { source = "zsh/init.zsh", target = ".zsh/init.zsh" }
-## Services
-ssh_agent_service = { source = "services/ssh-agent.service", target = ".config/systemd/user/ssh-agent.service" }
-## VSCode
 code_config = { source = "vscode.json", target = ".config/Code/User/settings.json" }
+brownie_config = { source = "brownie.yaml", target = "brownie-config.yaml" }
