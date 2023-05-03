@@ -48,7 +48,12 @@ antigen bundle safe-paste
 # Auto correction, but requires `pip install thefuck`
 antigen bundle thefuck
 # Multiplexer
-ZSH_TMUX_AUTOSTART_ONCE=true
+ZSH_TMUX_AUTOSTART=true # always start tmux
+if [[ "${XDG_SESSION_TYPE}" == "tty" ]]; then
+  ZSH_TMUX_AUTOSTART=false # unless over ssh
+fi
+ZSH_TMUX_UNICODE=true # support pretty characters
+ZSH_TMUX_AUTOCONNECT=false # retain new tab support
 antigen bundle tmux
 # Cool version of cd
 antigen bundle zsh-interactive-cd
