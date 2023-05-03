@@ -35,7 +35,7 @@ set title
 set encoding=utf-8
 "Set backup and swap folders
 set backupdir=~/.cache/vim/backup
-set directory=~/.cache/vim/swp
+set directory=~/.cache/vim/swap
 "Set visibility of command
 set showcmd
 "Enable the usage of mouse
