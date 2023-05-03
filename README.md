@@ -1,3 +1,13 @@
+## Pre-requisites
+```bash
+cargo install toml-bombadil
+```
+Or
+```bash
+sudo pacman -S toml-bombadil
+``` 
+
+## Usage
 For systems with the secret (private) GPG key installed, simply run:
 ```bash
 bombadil install private.toml
@@ -14,4 +24,4 @@ For (public) systems that just need a quick start, run:
 bombadil install public.tml
 bombadil link
 ```
-There is only one public profile
+There is only one public profile.
