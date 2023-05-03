@@ -17,4 +17,4 @@ bind-key -n M-l select-pane -l
 bind-key -n Home send Escape "OH"
 bind-key -n End send Escape "OF"
 # Allow mouse switching
-set -g mouse on 
+set -g mouse on
