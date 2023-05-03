@@ -25,6 +25,8 @@ common_scripts = { source = "scripts/common", target = ".config/scripts/common" 
 ssh_config = { source = "sshconfig", target = ".ssh/config" }
 ## VSCode
 code_config = { source = "vscode.json", target = ".config/Code/User/settings.json" }
+## Brownie
+brownie_config = { source = "brownie.yaml", target = "brownie-config.yaml" }
 
 [profiles.local]
 prehooks = [ "mkdir -p ~/.config/bazarr", 
