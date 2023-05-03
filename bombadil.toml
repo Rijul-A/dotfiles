@@ -12,3 +12,4 @@ zshrc = { source = "zshrc", target = ".zshrc" }
 zsh_init = { source = "zsh/init.zsh", target = ".zsh/init.zsh" }
 code_config = { source = "vscode.json", target = ".config/Code/User/settings.json" }
 brownie_config = { source = "brownie.yaml", target = "brownie-config.yaml" }
+gnupg_config = { source = "gnupgconf", target = ".gnupg/gpg-agent.conf" }

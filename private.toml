@@ -27,6 +27,8 @@ ssh_config = { source = "sshconfig", target = ".ssh/config" }
 code_config = { source = "vscode.json", target = ".config/Code/User/settings.json" }
 ## Brownie
 brownie_config = { source = "brownie.yaml", target = "brownie-config.yaml" }
+## GPG Agent configuration
+gnupg_config = { source = "gnupgconf", target = ".gnupg/gpg-agent.conf" }
 
 [profiles.local]
 prehooks = [ "mkdir -p ~/.config/bazarr", 
