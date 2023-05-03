@@ -21,7 +21,11 @@ bombadil link -p local
 
 For (public) systems that just need a quick start, run:
 ```bash
-bombadil install public.tml
+bombadil install bombadil.tml
 bombadil link
+```
+Or, one liner:
+```bash
+bombadil clone --remote https://github.com/Rijul-A/dotfiles --target ~/Desktop/dotfiles
 ```
 There is only one public profile.

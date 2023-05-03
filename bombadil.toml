@@ -13,6 +13,5 @@ zshrc = { source = "zshrc", target = ".zshrc" }
 zsh_init = { source = "zsh/init.zsh", target = ".zsh/init.zsh" }
 ## Services
 ssh_agent_service = { source = "services/ssh-agent.service", target = ".config/systemd/user/ssh-agent.service" }
-syncthing_service = { source = "services/syncthing.service", target = ".config/systemd/user/syncthing.service" }
 ## VSCode
 code_config = { source = "vscode.json", target = ".config/Code/User/settings.json" }
