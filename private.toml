@@ -1,0 +1,84 @@
+dotfiles_dir = "Desktop/dotfiles"
+# This is a global variable, so a separate `public.toml` must exist to remove it
+gpg_user_id = "Rijul"
+
+[settings]
+vars = [ "secrets.toml" ]
+prehooks = [ "mkdir -p ~/.config/scripts/common", "mkdir -p ~/.zsh", "mkdir -p ~/.config/Code/User" ]
+posthooks = [ "ln -f ~/.config/scripts/common/* ~/.local/bin/" ]
+
+#### These are always linked
+[settings.dots]
+## Singular files
+gitconfig = { source = "gitconfig", target = ".gitconfig" }
+npmrc = { source = "npmrc", target = ".npmrc" }
+tmuxconf = { source = "tmuxconf", target = ".tmux.conf" }
+vimrc = { source = "vimrc", target = ".vimrc" }
+zshrc = { source = "zshrc", target = ".zshrc" }
+zsh_init = { source = "zsh/init.zsh", target = ".zsh/init.zsh" }
+## Services
+ssh_agent_service = { source = "services/ssh-agent.service", target = ".config/systemd/user/ssh-agent.service" }
+syncthing_service = { source = "services/syncthing.service", target = ".config/systemd/user/syncthing.service" }
+## Scripts common to all environments
+common_scripts = { source = "scripts/common", target = ".config/scripts/common" }
+## SSH configuration
+ssh_config = { source = "sshconfig", target = ".ssh/config" }
+## VSCode
+code_config = { source = "vscode.json", target = ".config/Code/User/settings.json" }
+
+[profiles.local]
+prehooks = [ "mkdir -p ~/.config/bazarr", 
+             "mkdir -p ~/.config/scripts/drive_check",
+             "mkdir -p ~/.config/filebrowser",
+             "mkdir -p ~/.config/flood",
+             "mkdir -p ~/.config/jellyfin",
+             "mkdir -p ~/.config/scripts/restic",
+             "mkdir -p ~/.config/systemd/user/syncthing.conf.d",
+             "mkdir -p ~/.config/scripts/kodi" ]
+posthooks = [
+    "echo 'Set up rclone for source, crypt and supply Restic password'",
+    "echo 'Create new SSH key for tunnel destination and add it'"
+]
+
+#### These are only linked under the `local` profile
+[profiles.local.dots]
+## Timers, most of which have the same setting
+bazarr_timer = { source = "services/bazarr.timer", target = ".config/systemd/user/bazarr.timer" }
+dave_timer = { source = "services/bazarr.timer", target = ".config/systemd/user/dave.timer" }
+filebrowser_timer = { source = "services/bazarr.timer", target = ".config/systemd/user/filebrowser.timer" }
+# Flood depends on rtorrent and complains without it, so give it a timer too
+flood_timer = { source = "services/bazarr.timer", target = ".config/systemd/user/flood.timer" }
+jellyfin_timer = { source = "services/bazarr.timer", target = ".config/systemd/user/jellyfin.timer" }
+radarr_timer = { source = "services/bazarr.timer", target = ".config/systemd/user/radarr.timer" }
+rtorrent_timer = { source = "services/bazarr.timer", target = ".config/systemd/user/rtorrent.timer" }
+sonarr_timer = { source = "services/bazarr.timer", target = ".config/systemd/user/sonarr.timer" }
+syncthing_timer = { source = "services/bazarr.timer", target = ".config/systemd/user/syncthing.timer" }
+
+## Services and the unique timers that come with them
+bazarr_service = { source = "services/bazarr.service", target = ".config/systemd/user/bazarr.service" }
+caddy_service = { source = "services/caddy.service", target = ".config/systemd/user/caddy.service" }
+drive_check_service = { source = "services/drive-check.service", target = ".config/systemd/user/drive-check.service" }
+drive_check_scripts = { source = "scripts/drive_check", target = ".config/scripts/drive_check" }
+drive_check_env = { source = "envs/drive_check", target = ".config/scripts/drive_check/env" }
+# To help speed up boot, this timer is shorter than the others, since only after this is done can others start
+drive_check_timer = { source = "services/drive-check.timer", target = ".config/systemd/user/drive-check.timer" }
+drive_warn_service = { source = "services/drive-warn.service", target = ".config/systemd/user/drive-warn.service" }
+filebrowser_service = { source = "services/filebrowser.service", target = ".config/systemd/user/filebrowser.service" }
+flood_service = { source = "services/flood.service", target = ".config/systemd/user/flood.service" }
+jackett_service = { source = "services/jackett.service", target = ".config/systemd/user/jackett.service" }
+jellyfin_service = { source = "services/jellyfin.service", target = ".config/systemd/user/jellyfin.service" }
+jellyfin_config = { source = "config/jellyfin/env", target = ".config/jellyfin/env" }
+radarr_service = { source = "services/radarr.service", target = ".config/systemd/user/radarr.service" }
+restic_service = { source = "services/restic@.service", target = ".config/systemd/user/restic@.service" }
+restic_scripts = { source = "scripts/restic", target = ".config/scripts/restic" }
+restic_env1 = { source = "envs/restic/external", target = ".config/scripts/restic/external" }
+restic_timer = { source = "services/restic@.timer", target = ".config/systemd/user/restic@.timer" }
+reverse_tunnel_service = { source = "services/reverse-tunnel-@.service", target = ".config/systemd/user/reverse-tunnel-@.service" }
+rtorrent_service = { source = "services/rtorrent.service", target = ".config/systemd/user/rtorrent.service" }
+sonarr_service = { source = "services/sonarr.service", target = ".config/systemd/user/sonarr.service" }
+# Drive dependency
+syncthing_service_override = { source = "services/syncthing.service.d/override.conf", target = ".config/systemd/user/syncthing.service.d/override.conf" }
+
+## Kodi
+kodi_autostart = { source = "services/kodi.desktop", target = ".config/autostart/kodi.desktop" }
+kodi_script = { source = "scripts/kodi/jellyfin-helper.py", target = ".config/scripts/kodi/jellyfin-helper.py" }

@@ -1,0 +1,6 @@
+# Data directory, relative to the working dir
+JELLYFIN_DATA_DIRECTORY="./data"
+# Cache directory
+JELLYFIN_CACHE_DIRECTORY="./cache"
+# Additional options for the binary
+JELLYFIN_ADD_OPTS=""

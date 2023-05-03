@@ -1,0 +1,11 @@
+[Unit]
+Description=Dave webdav service
+After=drive-check.service
+BindsTo=drive-check.service
+
+[Service]
+WorkingDirectory=%h/.config/dave
+ExecStart=%h/.local/bin/dave
+
+[Install]
+WantedBy=default.target

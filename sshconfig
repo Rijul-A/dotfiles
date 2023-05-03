@@ -1,0 +1,14 @@
+Host {{local_name}}
+    HostName {{local_host}}
+    User {{local_user}}
+    Port {{local_port}}
+    ForwardAgent {{local_forward_agent}}
+Host {{remote_name}}
+    HostName {{remote_host}}
+    User {{remote_user}}
+    Port {{remote_port}}
+    ForwardAgent {{remote_forward_agent}}
+Host {{sbc_name}}
+    HostName {{sbc_host}}
+    User {{sbc_user}}
+    Port {{sbc_port}}

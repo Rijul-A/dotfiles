@@ -1,0 +1,13 @@
+[Unit]
+Description=Bazarr Service
+After=drive-check.service
+BindsTo=drive-check.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python /usr/lib/bazarr/bazarr.py --no-update --config %h/.config/bazarr
+Restart=on-failure
+SyslogIdentifier=bazarr
+
+[Install]
+WantedBy=default.target

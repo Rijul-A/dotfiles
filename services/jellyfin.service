@@ -1,0 +1,14 @@
+[Unit]
+Description=Jellyfin Media Server
+After=drive-check.service
+BindsTo=drive-check.service
+
+[Service]
+WorkingDirectory=%h/.config/jellyfin
+EnvironmentFile=%h/.config/jellyfin/env
+ExecStart=/usr/lib/jellyfin/bin/jellyfin --datadir ${JELLYFIN_DATA_DIRECTORY} --cachedir ${JELLYFIN_CACHE_DIRECTORY} ${JELLYFIN_ADD_OPTS}
+Restart=on-abort
+TimeoutSec=20
+
+[Install]
+WantedBy=default.target

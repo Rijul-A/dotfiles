@@ -1,0 +1,34 @@
+{
+    "workbench.colorTheme": "Quiet Light",
+    "editor.inlineSuggest.enabled": true,
+    "gitlens.statusBar.enabled": false,
+    "[python]": {
+        "editor.formatOnType": true
+    },
+    "git.openRepositoryInParentFolders": "always",
+    "github.copilot.enable": {
+        "*": false,
+        "plaintext": true,
+        "markdown": false,
+        "scminput": false,
+        "yaml": false
+    },
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+    "editor.formatOnPaste": false, // required 
+    "editor.formatOnType": false, // required
+    "editor.formatOnSave": true, // optional 
+    "editor.formatOnSaveMode": "file", // required to format on save
+    "files.autoSave": "onFocusChange",
+    "editor.codeActionsOnSave": {},
+    "workbench.startupEditor": "none", // optional but recommended
+    "rust-analyzer.cargoRunner": null,
+    "[rust]": {
+        "editor.defaultFormatter": "rust-lang.rust-analyzer",
+        "editor.formatOnSave": true,
+        },
+    "rust-analyzer.checkOnSave.command": "clippy",
+    "rust-analyzer.checkOnSave.enable": false,
+    "rust-analyzer.cargo.buildScripts.overrideCommand": null,
+    "rust-analyzer.rustfmt.overrideCommand": null,
+    "rust-analyzer.checkOnSave": true
+}

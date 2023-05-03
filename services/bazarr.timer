@@ -1,0 +1,6 @@
+[Timer]
+# Wait for 5 seconds after boot
+OnStartupSec=5s
+
+[Install]
+WantedBy=timers.target

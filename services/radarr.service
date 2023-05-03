@@ -1,0 +1,12 @@
+[Unit]
+Description=Radarr Service
+After=drive-check.service
+BindsTo=drive-check.service
+
+[Service]
+Type=simple
+SyslogIdentifier=radarr
+ExecStart=/usr/lib/radarr/bin/Radarr -nobrowser
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,11 @@
+[Unit]
+Description=Restic backup with settings %h/.config/scripts/restic/%I
+
+[Service]
+Type=oneshot
+EnvironmentFile=%h/.config/scripts/restic/%I/env
+WorkingDirectory=%h/.config/scripts/restic/%I
+ExecStart=%h/.config/scripts/restic/run.py
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,11 @@
+[Unit]
+Description=Filebrowser service
+BindsTo=drive-check.service
+After=drive-check.service
+
+[Service]
+Type=simple
+ExecStart=%h/.local/bin/filebrowser --database %h/.config/filebrowser/filebrowser.db
+
+[Install]
+WantedBy=default.target

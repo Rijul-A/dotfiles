@@ -1,0 +1,20 @@
+# Set color
+set -g default-terminal "xterm-256color"
+# Allow zshrc to alter title
+set -g set-titles on
+# Alt J to split horizontally
+bind-key -n M-j split-window -h
+# Alt K to split vertically
+bind-key -n M-k split-window -v
+# Alt Left/Right/Up/Down to navigate
+bind-key -n M-Left select-pane -L
+bind-key -n M-Right select-pane -R
+bind-key -n M-Up select-pane -U
+bind-key -n M-Down select-pane -D
+# Alt l for last pane
+bind-key -n M-l select-pane -l
+# Keep Home and End activated
+bind-key -n Home send Escape "OH"
+bind-key -n End send Escape "OF"
+# Allow mouse switching
+set -g mouse on 

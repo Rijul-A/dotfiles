@@ -1,0 +1,86 @@
+"Create folders that must exist
+if !isdirectory($HOME . "/.cache/vim/backup")
+    call mkdir($HOME . "/.cache/vim/backup", "p")
+endif
+if !isdirectory($HOME . "/.cache/vim/swap")
+    call mkdir($HOME . "/.cache/vim/swap", "p")
+endif
+
+"Set up plugin manager
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \| PlugInstall --sync | source $MYVIMRC
+\| endif
+"Set up plugins
+call plug#begin('~/.vim/plugged')
+Plug 'tpope/vim-sensible'
+Plug 'tomlion/vim-solidity'
+"vim an mp3 file to edit tags
+Plug 'AndrewRadev/id3.vim'
+call plug#end()
+
+"Vim defaults, not Vi
+set nocompatible
+"Auto reload files
+set autoread
+"When this file is written, source it again
+autocmd! BufWritePost $MYVIMRC source $MYVIMRC | echom "Reloaded $NVIMRC"
+"Set title to be file name and path
+set title
+"Set encoding
+set encoding=utf-8
+"Set backup and swap folders
+set backupdir=~/.cache/vim/backup
+set directory=~/.cache/vim/swp
+"Set visibility of command
+set showcmd
+"Enable the usage of mouse
+set mouse=a
+"Line number
+set number
+"Highlight the full width of the screen
+set cursorline
+hi CursorLine term=bold cterm=bold guibg=Grey40
+"Highlight the height of the screen
+set cursorcolumn
+"Enable left/right/up/down for scrolling
+set whichwrap=bs<>[]
+"Show a status line
+set laststatus=2
+"Add extra line in the end when reading a file
+autocmd BufReadPost *
+	\ if line("'\"") > 0 && line("'\"") <= line("$") |
+	\ 	exe "normal g`\"" |
+	\ endif
+"Set soft wrap
+set wrap
+"Auto complete with Ctrl+X then Ctrl+O
+set ofu=syntaxcomplete#Complete
+"Smooth the terminal
+set ttyfast
+"Search options
+set wildignorecase
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+set gdefault
+"Indent options
+set copyindent
+set smarttab
+set autoindent
+set smartindent
+"Language specific
+filetype plugin indent on
+au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru} set ft=ruby
+au BufRead,BufNewFile *.html.erb set ft=eruby
+au BufNewFile,BufRead *.json set ft=json syntax=javascript
+"Global copy/paste
+vnoremap y "+y
+noremap <C-c> "+y
+noremap <C-v> "+p
+:command! Vb :execute "normal! \<C-v>"

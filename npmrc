@@ -1,0 +1,2 @@
+prefix=${NPM_PACKAGES}
+cache=${HOME}/.cache/npm

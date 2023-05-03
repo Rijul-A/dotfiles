@@ -1,0 +1,75 @@
+export EDITOR=/usr/bin/vim
+
+# NPM_PACKAGES/bin is the location for packages installed by `npm install -g`
+# This variable feeds into `prefix` of `~/.npmrc`, which is also read by `yarn`
+export NPM_PACKAGES="${HOME}/.npm/packages"
+# If any of these packages have manpages, they should feed into `man`
+export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/bin/share/man"
+# Make the binaries accessible via `which` and directly
+export PATH=$NPM_PACKAGES/bin:$PATH
+
+# Ruby gems
+export PATH=~/.local/share/gem/ruby/3.0.0/bin:$PATH
+
+# Manually installed binaries like syncthing, go
+export PATH=~/.local/bin:$PATH
+
+# Binaries installed inside GOPATH like `goimports`
+export PATH=~/go/bin:$PATH
+
+# Folder used by custom shared objects like bls, mcl
+export LD_LIBRARY_PATH=/usr/local/lib:/usr/lib
+
+# Download Go modules from hosts directly, instead of via Google
+export GOPROXY="direct"
+
+# Prevent creation of ~/.lesshst
+export LESSHISTFILE=-
+
+# Allow signing using GPG
+export GPG_TTY=$(tty)
+
+# Source external files, which configure zsh, aliases, keybindings, colors and prompts
+# This is done before any of our aliases are defined so that our aliases take priority
+source ~/.zsh/init.zsh
+
+# Confirm before overwriting
+alias mv="mv -i"
+# Remove local timestamps from git commits
+alias git="TZ=UTC /usr/bin/git"
+# Manage user specific systemd services
+alias systemctlu="/usr/bin/systemctl --user"
+alias journalctlu="/usr/bin/journalctl --user"
+
+# Change SSH agent socket to the one in the ssh-agent.service if keepassxc exists
+if which keepassxc > /dev/null 2>&1 ; then
+    export SSH_AUTH_SOCK="/run/user/1000/ssh-agent.socket"
+fi
+
+mkcd () {
+    mkdir -p "$1"
+    cd "$1"
+}
+
+gitRemoteToSSH () {
+    existing=$(git config remote.origin.url)
+    if [ -z "$existing" ]; then echo "Could not figure out existing url"; return; fi
+    if grep -q "git@" <<< "$existing"; then echo "No change needed"; return; fi
+    # replace HTTPS:// with git@
+    replaced=$(echo "$existing" | sed "s/https:\/\//git@/")
+    # now replace first slash with :
+    replaced=$(echo "$replaced" | sed "s/\//:/")
+    git config remote.origin.url "$replaced"
+    echo "Changed to $(git config remote.origin.url)"
+}
+gitRemoteToHTTPS () {
+    existing=$(git config remote.origin.url)
+    if [ -z "$existing" ]; then echo "Could not figure out existing url"; return; fi
+    if grep -q "https://" <<< "$existing"; then echo "No change needed"; return; fi
+    replaced=$(echo "$existing" | sed "s/git@/https:\/\//")
+    replaced=$(echo "$replaced" | sed "s/:/\//2")
+    git config remote.origin.url "$replaced"
+    echo "Changed to $(git config remote.origin.url)"
+}
+
+eval $(thefuck --alias)

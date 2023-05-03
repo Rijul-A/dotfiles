@@ -1,0 +1,16 @@
+[Unit]
+Description=rTorrent Service
+After=drive-check.service
+BindsTo=drive-check.service
+
+[Service]
+Type=simple
+ExecStartPre=/usr/bin/rm -f %h/.config/rtorrent/session/rtorrent.lock
+ExecStart=/usr/bin/rtorrent -n -o import=%h/.config/rtorrent/config
+WorkingDirectory=%h/.config/rtorrent
+Restart=on-failure
+RestartSec=3
+KillSignal=SIGKILL
+
+[Install]
+WantedBy=default.target

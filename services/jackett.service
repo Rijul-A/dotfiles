@@ -1,0 +1,15 @@
+[Unit]
+Description=Jackett Daemon
+After=network.target
+
+[Service]
+SyslogIdentifier=jackett
+Restart=always
+RestartSec=5
+Type=simple
+# NoUpdates because it is managed by the system package manager
+ExecStart=/usr/lib/jackett/jackett --NoUpdates -p 9118
+TimeoutStopSec=30
+
+[Install]
+WantedBy=default.target

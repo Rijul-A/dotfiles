@@ -1,0 +1,13 @@
+[Unit]
+Description=Sonarr Service
+After=drive-check.service
+BindsTo=drive-check.service
+
+[Service]
+Type=simple
+SyslogIdentifier=sonarr
+ExecStart=/usr/lib/sonarr/bin/Sonarr -nobrowser
+Restart=on-failure
+
+[Install]
+WantedBy=default.target

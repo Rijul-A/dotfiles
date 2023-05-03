@@ -1,0 +1,17 @@
+[Unit]
+Description=Caddy
+Documentation=https://caddyserver.com/docs/
+
+[Service]
+Type=notify
+EnvironmentFile=%h/.config/caddy/env
+ExecStart=%h/.local/bin/caddy run --environ --config %h/.config/caddy/caddyConfig.yaml --adapter yaml
+ExecReload=%h/.local/bin/caddy reload --config %h/.config/caddy/caddyConfig.yaml --force --adapter yaml
+TimeoutStopSec=5s
+LimitNOFILE=1048576
+LimitNPROC=1024
+PrivateTmp=true
+ProtectSystem=full
+
+[Install]
+WantedBy=default.target
