@@ -8,12 +8,12 @@ export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/bin/share/man"
 # Make the binaries accessible via `which` and directly
 export PATH=$NPM_PACKAGES/bin:$PATH
 
-# Ruby gems
+# Ruby gems (for example `fusuma`)
 export PATH=~/.local/share/gem/ruby/3.0.0/bin:$PATH
-
-# Manually installed binaries like syncthing, go
+# Manually installed binaries like `syncthing`
 export PATH=~/.local/bin:$PATH
-
+# Golang
+export PATH=/usr/local/go/bin:$PATH
 # Binaries installed inside GOPATH like `goimports`
 export PATH=~/go/bin:$PATH
 
