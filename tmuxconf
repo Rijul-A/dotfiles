@@ -16,5 +16,5 @@ bind-key -n M-l select-pane -l
 # Keep Home and End activated
 bind-key -n Home send Escape "OH"
 bind-key -n End send Escape "OF"
-# Allow mouse switching
-set -g mouse on
+# Disallow mouse switching, since it hinders with copy/paste
+set -g mouse off
