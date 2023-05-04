@@ -2,10 +2,10 @@
 set -g default-terminal "xterm-256color"
 # Allow zshrc to alter title
 set -g set-titles on
-# Alt J to split horizontally
-bind-key -n M-j split-window -h
-# Alt K to split vertically
-bind-key -n M-k split-window -v
+# Alt R to add tab to the right
+bind-key -n M-r split-window -h
+# Alt D to add tab below 
+bind-key -n M-d split-window -v
 # Alt Left/Right/Up/Down to navigate
 bind-key -n M-Left select-pane -L
 bind-key -n M-Right select-pane -R
