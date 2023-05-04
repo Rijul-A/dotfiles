@@ -41,7 +41,7 @@ antigen bundle dotenv
 antigen bundle gitignore
 # Commands to execute on empty shell + Enter
 MAGIC_ENTER_GIT_COMMAND='git status'
-MAGIC_ENTER_OTHER_COMMAND='ls --color=auto -lh'
+MAGIC_ENTER_OTHER_COMMAND='ls -lh'
 antigen bundle magic-enter
 # Ignore any newlines within a pasted command 
 antigen bundle safe-paste
