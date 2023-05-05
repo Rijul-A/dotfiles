@@ -46,11 +46,6 @@ if which keepassxc > /dev/null 2>&1 ; then
     export SSH_AUTH_SOCK="/run/user/1000/ssh-agent.socket"
 fi
 
-mkcd () {
-    mkdir -p "$1"
-    cd "$1"
-}
-
 gitRemoteToSSH () {
     existing=$(git config remote.origin.url)
     if [ -z "$existing" ]; then echo "Could not figure out existing url"; return; fi
