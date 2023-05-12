@@ -7,6 +7,7 @@
 ### Hardware
  - Fix the microphone LED by `echo -n 7 > /sys/class/sound/card1/controlC1/led-mic/detach`, automated via a [`systemd` service](https://aur.archlinux.org/cgit/aur.git/tree/fix-tp-mic-led.service?h=thinkpad-p14s). 
  - The TrackPoint sensitivity can be halved by `echo 64 > /sys/devices/platform/i8042/serio1/sensitivity`, again automated via a `systemd` service. `udev` rules don't work in this case because the device appears too late in the boot process. Consequently, a direct `service` file doesn't work either; it must be routed via a [`path` file with the `PathExists` condition](https://wiki.archlinux.org/title/TrackPoint#systemd.path_unit). 
+ - Automatically power off the keyboard backlight by using [keyboard-backlightd](https://aur.archlinux.org/packages/keyboard-backlightd). The default configuration file in `/etc/conf.d/keyboard-backlightd` works fine for this device.
 
 ### Sleep
  - To enable `suspend-then-hibernate` on lid shut, add to `/etc/systemd/sleep.conf` [two parameters](https://austingwalters.com/increasing-battery-life-on-an-arch-linux-laptop-thinkpad-t14s/): `HibernateState=disk` and `HibernateDelaySec=30min`; and to `/etc/systemd/logind.conf` one parameter `HandleLidSwitch=suspend-then-hibernate`. Remember that the setting in Gnome's Tweaks to "Suspend when laptop lid is closed" [must be on](https://wiki.archlinux.org/title/GNOME#Do_not_suspend_when_laptop_lid_is_closed). 
