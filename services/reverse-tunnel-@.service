@@ -1,0 +1,11 @@
+[Unit]
+Description=Reverse tunnel port %I from this PC to Remote
+After=default.target
+
+[Service]
+ExecStart=/usr/bin/ssh -g -N -T -i %h/.ssh/id_ed25519 -o ServerAliveInterval=10 -o ExitOnForwardFailure=yes -p 22221 -R %I:localhost:%I {{tunnel_user}}@{{remote_host}}
+Restart=always
+RestartSec=5s
+
+[Install]
+WantedBy=default.target
