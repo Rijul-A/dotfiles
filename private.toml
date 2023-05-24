@@ -71,7 +71,7 @@ filebrowser_service = { source = "services/filebrowser.service", target = ".conf
 flood_service = { source = "services/flood.service", target = ".config/systemd/user/flood.service" }
 jackett_service = { source = "services/jackett.service", target = ".config/systemd/user/jackett.service" }
 jellyfin_service = { source = "services/jellyfin.service", target = ".config/systemd/user/jellyfin.service" }
-jellyfin_config = { source = "config/jellyfin/env", target = ".config/jellyfin/env" }
+jellyfin_config = { source = "envs/jellyfin", target = ".config/jellyfin/env" }
 radarr_service = { source = "services/radarr.service", target = ".config/systemd/user/radarr.service" }
 restic_service = { source = "services/restic@.service", target = ".config/systemd/user/restic@.service" }
 restic_scripts = { source = "scripts/restic", target = ".config/scripts/restic" }
