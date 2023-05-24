@@ -21,7 +21,7 @@ ssh_agent_service = { source = "services/ssh-agent.service", target = ".config/s
 syncthing_service = { source = "services/syncthing.service", target = ".config/systemd/user/syncthing.service" }
 ## Scripts common to all environments
 common_scripts = { source = "scripts/common", target = ".config/scripts/common" }
-## SSH configuration
+## SSH configuration (TODO: do not install on {{local_name}} and {{remote_name}})
 ssh_config = { source = "sshconfig", target = ".ssh/config" }
 ## VSCode
 code_config = { source = "vscode.json", target = ".config/Code/User/settings.json" }
@@ -36,11 +36,9 @@ prehooks = [ "mkdir -p ~/.config/bazarr",
              "mkdir -p ~/.config/filebrowser",
              "mkdir -p ~/.config/flood",
              "mkdir -p ~/.config/jellyfin",
-             "mkdir -p ~/.config/scripts/restic",
              "mkdir -p ~/.config/systemd/user/syncthing.conf.d",
              "mkdir -p ~/.config/scripts/kodi" ]
 posthooks = [
-    "echo 'Set up rclone for source, crypt and supply Restic password'",
     "echo 'Create new SSH key for tunnel destination and add it'"
 ]
 
@@ -73,10 +71,6 @@ jackett_service = { source = "services/jackett.service", target = ".config/syste
 jellyfin_service = { source = "services/jellyfin.service", target = ".config/systemd/user/jellyfin.service" }
 jellyfin_config = { source = "envs/jellyfin", target = ".config/jellyfin/env" }
 radarr_service = { source = "services/radarr.service", target = ".config/systemd/user/radarr.service" }
-restic_service = { source = "services/restic@.service", target = ".config/systemd/user/restic@.service" }
-restic_scripts = { source = "scripts/restic", target = ".config/scripts/restic" }
-restic_env1 = { source = "envs/restic/external", target = ".config/scripts/restic/external" }
-restic_timer = { source = "services/restic@.timer", target = ".config/systemd/user/restic@.timer" }
 reverse_tunnel_service = { source = "services/reverse-tunnel-@.service", target = ".config/systemd/user/reverse-tunnel-@.service" }
 rtorrent_service = { source = "services/rtorrent.service", target = ".config/systemd/user/rtorrent.service" }
 sonarr_service = { source = "services/sonarr.service", target = ".config/systemd/user/sonarr.service" }

@@ -1,6 +1,0 @@
-GOTIFY_URL=http://127.0.0.1:8083
-GOTIFY_APP_TOKEN={{gotify_app_token}}
-
-RESTIC_REPOSITORY_SUBPATH=external
-RESTIC_BACKUP_SOURCE={{drive_check_target}}/Synced
-RESTIC_KEEP_N=100
