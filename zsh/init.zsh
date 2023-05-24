@@ -55,8 +55,6 @@ fi
 ZSH_TMUX_UNICODE=true # support pretty characters
 ZSH_TMUX_AUTOCONNECT=false # retain new tab support
 antigen bundle tmux
-# Cool version of cd
-antigen bundle zsh-interactive-cd
 # History based auto suggestions
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
