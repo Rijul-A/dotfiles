@@ -1,7 +1,6 @@
 {
     "workbench.colorTheme": "Quiet Light",
     "editor.inlineSuggest.enabled": true,
-    "gitlens.statusBar.enabled": false,
     "[python]": {
         "editor.formatOnType": true
     },
@@ -26,8 +25,6 @@
         "editor.defaultFormatter": "rust-lang.rust-analyzer",
         "editor.formatOnSave": true,
         },
-    "rust-analyzer.checkOnSave.command": "clippy",
-    "rust-analyzer.checkOnSave.enable": false,
     "rust-analyzer.cargo.buildScripts.overrideCommand": null,
     "rust-analyzer.rustfmt.overrideCommand": null,
     "rust-analyzer.checkOnSave": true
