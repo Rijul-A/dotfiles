@@ -1,0 +1,5 @@
+[Unit]
+Description=Set TrackPoint attributes
+
+[Service]
+ExecStart=/usr/bin/zsh -c 'echo 64 > /sys/devices/platform/i8042/serio1/sensitivity'

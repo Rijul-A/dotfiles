@@ -1,0 +1,8 @@
+[Unit]
+Description=Fix the Microphone LED to follow Mic status
+
+[Service]
+ExecStart=/usr/bin/zsh -c 'echo -n 7 > /sys/class/sound/card1/controlC1/led-mic/detach'
+
+[Install]
+WantedBy=multi-user.target
