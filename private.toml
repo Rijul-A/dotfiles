@@ -5,13 +5,13 @@ gpg_user_id = "Rijul"
 [settings]
 vars = [ "secrets.toml" ]
 prehooks = [
-    "mkdir -p ~/.config/scripts/common",
-    "mkdir -p ~/.zsh",
-    "mkdir -p ~/.config/Code/User",
-    "mkdir -p ~/.config/systemd/user",
+    "/usr/bin/mkdir -p ~/.config/scripts/common",
+    "/usr/bin/mkdir -p ~/.zsh",
+    "/usr/bin/mkdir -p ~/.config/Code/User",
+    "/usr/bin/mkdir -p ~/.config/systemd/user",
 ]
 posthooks = [
-    "ln -f ~/.config/scripts/common/* ~/.local/bin/",
+    "/usr/bin/ln -f ~/.config/scripts/common/* ~/.local/bin/",
 ]
 
 #### These are common across all profiles
@@ -30,16 +30,17 @@ common_scripts = { source = "scripts/common", target = ".config/scripts/common" 
 
 [profiles.local]
 prehooks = [
-    "mkdir -p ~/.config/bazarr",
-    "mkdir -p ~/.config/scripts/drive_check",
-    "mkdir -p ~/.config/filebrowser",
-    "mkdir -p ~/.config/flood",
-    "mkdir -p ~/.config/jellyfin",
-    "mkdir -p ~/.config/systemd/user/syncthing.conf.d",
-    "mkdir -p ~/.config/scripts/kodi",
+    "/usr/bin/mkdir -p ~/.config/bazarr",
+    "/usr/bin/mkdir -p ~/.config/scripts/drive_check",
+    "/usr/bin/mkdir -p ~/.config/filebrowser",
+    "/usr/bin/mkdir -p ~/.config/flood",
+    "/usr/bin/mkdir -p ~/.config/jellyfin",
+    "/usr/bin/mkdir -p ~/.config/systemd/user/syncthing.conf.d",
+    "/usr/bin/mkdir -p ~/.config/scripts/kodi",
+    "/usr/bin/systemctl --user daemon-reload",
 ]
 posthooks = [
-    "echo 'Create new SSH key for tunnel destination and add it'"
+    "echo 'Create new SSH key for tunnel destination and add it'",
 ]
 
 [profiles.laptop]
@@ -51,19 +52,18 @@ prehooks = [
     "/usr/bin/sudo /usr/bin/rm -f /etc/systemd/system/fix-mic-led.service",
     "/usr/bin/sudo /usr/bin/rm -f /etc/systemd/system/trackpoint-parameters.path",
     "/usr/bin/sudo /usr/bin/rm -f /etc/systemd/system/trackpoint-parameters.service",
-    "/usr/bin/sudo systemctl daemon-reload",
+    "/usr/bin/sudo /usr/bin/systemctl daemon-reload",
 ]
 posthooks = [
-    "/usr/bin/sudo ln -s ~/.config/systemd/user/ath11k-suspend.service /etc/systemd/system/ath11k-suspend.service",
-    "/usr/bin/sudo ln -s ~/.config/systemd/user/fix-mic-led.service /etc/systemd/system/fix-mic-led.service",
-    "/usr/bin/sudo ln -s ~/.config/systemd/user/trackpoint-parameters.path /etc/systemd/system/trackpoint-parameters.path",
-    "/usr/bin/sudo ln -s ~/.config/systemd/user/trackpoint-parameters.service /etc/systemd/system/trackpoint-parameters.service",
-    "/usr/bin/sudo systemctl daemon-reload",
-    "/usr/bin/sudo systemctl enable ath11k-suspend",
-    "/usr/bin/sudo systemctl enable --now fix-mic-led",
-    "/usr/bin/sudo systemctl enable --now trackpoint-parameters.path",
+    "/usr/bin/sudo /usr/bin/ln -s ~/.config/systemd/user/ath11k-suspend.service /etc/systemd/system/ath11k-suspend.service",
+    "/usr/bin/sudo /usr/bin/ln -s ~/.config/systemd/user/fix-mic-led.service /etc/systemd/system/fix-mic-led.service",
+    "/usr/bin/sudo /usr/bin/ln -s ~/.config/systemd/user/trackpoint-parameters.path /etc/systemd/system/trackpoint-parameters.path",
+    "/usr/bin/sudo /usr/bin/ln -s ~/.config/systemd/user/trackpoint-parameters.service /etc/systemd/system/trackpoint-parameters.service",
+    "/usr/bin/sudo /usr/bin/systemctl daemon-reload",
+    "/usr/bin/sudo /usr/bin/systemctl enable ath11k-suspend",
+    "/usr/bin/sudo /usr/bin/systemctl enable --now fix-mic-led",
+    "/usr/bin/sudo /usr/bin/systemctl enable --now trackpoint-parameters.path",
 ]
-
 
 [profiles.laptop.dots]
 # SSH agent required by KeePassXC

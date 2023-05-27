@@ -1,7 +1,11 @@
 dotfiles_dir = "Desktop/dotfiles"
 
 [settings]
-prehooks = [ "mkdir -p ~/.zsh", "mkdir -p ~/.config/Code/User", "mkdir -p ~/.config/systemd/user" ]
+prehooks = [
+    "/usr/bin/mkdir -p ~/.zsh",
+    "/usr/bin/mkdir -p ~/.config/Code/User",
+    "/usr/bin/mkdir -p ~/.config/systemd/user",
+]
 
 [settings.dots]
 gitconfig = { source = "gitconfig", target = ".gitconfig" }
@@ -13,6 +17,11 @@ zsh_init = { source = "zsh/init.zsh", target = ".zsh/init.zsh" }
 code_config = { source = "vscode.json", target = ".config/Code/User/settings.json" }
 brownie_config = { source = "brownie.yaml", target = "brownie-config.yaml" }
 gnupg_config = { source = "gnupgconf", target = ".gnupg/gpg-agent.conf" }
+
+[profiles.remote]
+posthooks = [
+    "/usr/bin/systemctl --user daemon-reload",
+]
 
 [profiles.remote.dots]
 syncthing_service = { source = "services/syncthing.service", target = ".config/systemd/user/syncthing.service" }
