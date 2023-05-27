@@ -37,9 +37,15 @@ prehooks = [
     "/usr/bin/mkdir -p ~/.config/jellyfin",
     "/usr/bin/mkdir -p ~/.config/systemd/user/syncthing.conf.d",
     "/usr/bin/mkdir -p ~/.config/scripts/kodi",
+    "/usr/bin/mkdir -p ~/.config/udev",
+    "/usr/bin/sudo /usr/bin/mkdir -p /etc/udev/hwdb.d",
+    "/usr/bin/sudo /usr/bin/rm -f /etc/udev/hwdb.d/remote.hwdb",
     "/usr/bin/systemctl --user daemon-reload",
 ]
 posthooks = [
+    "/usr/bin/sudo /usr/bin/ln -s ~/.config/udev/remote.hwdb /etc/udev/hwdb.d/remote.hwdb",
+    "/usr/bin/sudo /usr/bin/systemd-hwdb update",
+    "/usr/bin/sudo /usr/bin/udevadm trigger",
     "echo 'Create new SSH key for tunnel destination and add it'",
 ]
 
@@ -114,3 +120,4 @@ syncthing_service_override = { source = "services/syncthing.service.d/override.c
 ## Kodi
 kodi_autostart = { source = "services/kodi.desktop", target = ".config/autostart/kodi.desktop" }
 kodi_script = { source = "scripts/kodi/jellyfin-helper.py", target = ".config/scripts/kodi/jellyfin-helper.py" }
+remote_db = { source = "udev/remote.hwdb", target = ".config/udev/remote.hwdb" }
