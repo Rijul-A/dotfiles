@@ -6,7 +6,7 @@ StopWhenUnneeded=yes
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-ExecStartPre=/usr/bin/zsh -c '/usr/bin/lsmod | /usr/bin/grep ath11k_pci > /dev/null'
+ExecStartPre=/usr/bin/bash -c '/usr/bin/lsmod | /usr/bin/grep ath11k_pci > /dev/null'
 ExecStart=/usr/bin/modprobe -r ath11k_pci
 ExecStop=/usr/bin/modprobe ath11k_pci
 

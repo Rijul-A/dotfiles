@@ -5,7 +5,10 @@ BindsTo=drive-check.service
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/python /usr/lib/bazarr/bazarr.py --no-update --config %h/.config/bazarr
+ExecStart=/usr/bin/python \
+    /usr/lib/bazarr/bazarr.py \
+    --no-update \
+    --config %h/.config/bazarr
 Restart=on-failure
 SyslogIdentifier=bazarr
 

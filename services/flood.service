@@ -2,7 +2,11 @@
 Description=Flood Service
 
 [Service]
-ExecStart=/usr/bin/node --use_strict /usr/lib/flood/index.js -h 0.0.0.0 --rtsocket %h/.config/rtorrent/socket --rundir %h/.config/flood
+ExecStart=/usr/bin/node \
+    --use_strict /usr/lib/flood/index.js \
+    -h 0.0.0.0 \
+    --rtsocket %h/.config/rtorrent/socket \
+    --rundir %h/.config/flood
 
 [Install]
 WantedBy=default.target
