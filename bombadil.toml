@@ -26,8 +26,8 @@ prehooks = [
     "/usr/bin/sudo /usr/bin/systemctl daemon-reload",
 ]
 posthooks = [
-    "/usr/bin/sudo /usr/bin/ln -s ~/.config/systemd/user/backup-mailcow.service /etc/systemd/system/autorestic@.service",
-    "/usr/bin/sudo /usr/bin/ln -s ~/.config/systemd/user/backup-mailcow.service /etc/systemd/system/autorestic@remote.timer",
+    "/usr/bin/sudo /usr/bin/ln -s ~/.config/systemd/user/autorestic@.service /etc/systemd/system/autorestic@.service",
+    "/usr/bin/sudo /usr/bin/ln -s ~/.config/systemd/user/autorestic@remote.timer /etc/systemd/system/autorestic@remote.timer",
     "/usr/bin/sudo /usr/bin/ln -s ~/.config/systemd/user/backup-mailcow.service /etc/systemd/system/backup-mailcow.service",
     "/usr/bin/sudo /usr/bin/ln -s ~/.config/systemd/user/backup-mailcow.timer /etc/systemd/system/backup-mailcow.timer",
     "/usr/bin/sudo /usr/bin/systemctl daemon-reload",
