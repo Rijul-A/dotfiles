@@ -21,10 +21,15 @@ prehooks = [
     "/usr/bin/mkdir -p ~/.config/systemd/user",
 ]
 posthooks = [
+    "/usr/bin/sudo /usr/bin/ln -s ~/.config/systemd/user/backup-mailcow.service /etc/systemd/system/backup-mailcow.service",
+    "/usr/bin/sudo /usr/bin/ln -s ~/.config/systemd/user/backup-mailcow.timer /etc/systemd/system/backup-mailcow.timer",
+    "/usr/bin/sudo /usr/bin/systemctl daemon-reload",
     "/usr/bin/systemctl --user daemon-reload",
 ]
 
 [profiles.remote.dots]
+backup_mailcow_service = { source = "services/backup-mailcow.service", target = ".config/systemd/user/backup-mailcow.service" }
+backup_mailcow_timer = { source = "services/backup-mailcow.timer", target = ".config/systemd/user/backup-mailcow.timer" }
 space_check_service = { source = "services/space-check.service", target = ".config/systemd/user/space-check.service" }
 space_check_timer = { source = "services/space-check.timer", target = ".config/systemd/user/space-check.timer" }
 space_warn_service = { source = "services/space-warn.service", target = ".config/systemd/user/space-warn.service" }

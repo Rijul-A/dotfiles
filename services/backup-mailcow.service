@@ -1,0 +1,12 @@
+[Unit]
+Description=Process to backup Mailcow
+
+[Service]
+Type=oneshot
+Environment=MAILCOW_BACKUP_LOCATION=/opt/backup-mailcow
+ExecStart=/opt/mailcow-dockerized/helper-scripts/backup_and_restore.sh backup all --delete-days 3
+ExecStartPost=/usr/bin/chown -R user:user /opt/backup-mailcow
+ExecStartPost=/home/user/.local/bin/gotify push -t "Mailcow backup success"
+
+[Install]
+WantedBy=default.target
