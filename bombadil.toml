@@ -2,21 +2,20 @@ dotfiles_dir = "Desktop/dotfiles"
 
 [settings]
 prehooks = [
-    "/usr/bin/mkdir -p ~/.zsh",
-    "/usr/bin/mkdir -p ~/.config/Code/User",
     "/usr/bin/mkdir -p ~/.config/systemd/user",
+    "/usr/bin/mkdir -p ~/.gnupg",
+    "/usr/bin/mkdir -p ~/.zsh",
 ]
 
 [settings.dots]
+brownie_config = { source = "individual/brownie.yaml", target = "brownie-config.yaml" }
 gitconfig = { source = "individual/gitconfig", target = ".gitconfig" }
+gnupg_config = { source = "individual/gnupgconf", target = ".gnupg/gpg-agent.conf" }
 npmrc = { source = "individual/npmrc", target = ".npmrc" }
 tmuxconf = { source = "individual/tmuxconf", target = ".tmux.conf" }
 vimrc = { source = "individual/vimrc", target = ".vimrc" }
 zshrc = { source = "zsh/zshrc", target = ".zshrc" }
 zsh_init = { source = "zsh/init.zsh", target = ".zsh/init.zsh" }
-code_config = { source = "individual/vscode.json", target = ".config/Code/User/settings.json" }
-brownie_config = { source = "individual/brownie.yaml", target = "brownie-config.yaml" }
-gnupg_config = { source = "individual/gnupgconf", target = ".gnupg/gpg-agent.conf" }
 
 [profiles.remote]
 posthooks = [

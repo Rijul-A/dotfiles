@@ -6,9 +6,9 @@ gpg_user_id = "Rijul"
 vars = [ "secrets.toml" ]
 prehooks = [
     "/usr/bin/mkdir -p ~/.config/scripts/common",
-    "/usr/bin/mkdir -p ~/.zsh",
-    "/usr/bin/mkdir -p ~/.config/Code/User",
     "/usr/bin/mkdir -p ~/.config/systemd/user",
+    "/usr/bin/mkdir -p ~/.gnupg",
+    "/usr/bin/mkdir -p ~/.zsh",
 ]
 posthooks = [
     "/usr/bin/ln -f ~/.config/scripts/common/* ~/.local/bin/",
@@ -16,29 +16,27 @@ posthooks = [
 
 #### These are common across all profiles
 [settings.dots]
+# Individual files
+brownie_config = { source = "individual/brownie.yaml", target = "brownie-config.yaml" }
 gitconfig = { source = "individual/gitconfig", target = ".gitconfig" }
+gnupg_config = { source = "individual/gnupgconf", target = ".gnupg/gpg-agent.conf" }
 npmrc = { source = "individual/npmrc", target = ".npmrc" }
 tmuxconf = { source = "individual/tmuxconf", target = ".tmux.conf" }
 vimrc = { source = "individual/vimrc", target = ".vimrc" }
 zshrc = { source = "zsh/zshrc", target = ".zshrc" }
 zsh_init = { source = "zsh/init.zsh", target = ".zsh/init.zsh" }
-code_config = { source = "individual/vscode.json", target = ".config/Code/User/settings.json" }
-brownie_config = { source = "individual/brownie.yaml", target = "brownie-config.yaml" }
-gnupg_config = { source = "individual/gnupgconf", target = ".gnupg/gpg-agent.conf" }
-syncthing_service = { source = "services/syncthing.service", target = ".config/systemd/user/syncthing.service" }
+# Services
 autorestic_service = { source = "services/autorestic@.service", target = ".config/systemd/user/autorestic@.service" }
 common_scripts = { source = "scripts/common", target = ".config/scripts/common" }
+syncthing_service = { source = "services/syncthing.service", target = ".config/systemd/user/syncthing.service" }
 
 [profiles.laptop]
 # Unfortunately bombadil does not quit if a prehook fails, so checking if we are root is pointless
 # As a workaround, add /usr/bin/sudo to each posthook
 prehooks = [
     # "/bin/bash -c 'if [ $(id -u) -ne 0 ]; then exit 1; fi;'",
-    "/usr/bin/sudo /usr/bin/rm -f /etc/systemd/system/ath11k-suspend.service",
-    "/usr/bin/sudo /usr/bin/rm -f /etc/systemd/system/fix-mic-led.service",
-    "/usr/bin/sudo /usr/bin/rm -f /etc/systemd/system/trackpoint-parameters.path",
-    "/usr/bin/sudo /usr/bin/rm -f /etc/systemd/system/trackpoint-parameters.service",
-    "/usr/bin/sudo /usr/bin/systemctl daemon-reload",
+    "/usr/bin/mkdir -p ~/.config/Code/User",
+    "/usr/bin/mkdir -p ~/.ssh",
 ]
 posthooks = [
     # Without these services, the laptop cannot function as intended
@@ -53,6 +51,8 @@ posthooks = [
 ]
 
 [profiles.laptop.dots]
+# VSCode
+code_config = { source = "individual/vscode.json", target = ".config/Code/User/settings.json" }
 # SSH agent required by KeePassXC
 ssh_agent_service = { source = "services/ssh-agent.service", target = ".config/systemd/user/ssh-agent.service" }
 # SSH configuration, which only goes on the laptop and nowhere else
@@ -68,28 +68,27 @@ trackpoint_parameters_service = { source = "services/trackpoint-parameters.servi
 #### These are only linked under the `local` profile
 [profiles.local]
 prehooks = [
-    "/usr/bin/mkdir -p ~/.config/bazarr",
-    "/usr/bin/mkdir -p ~/.config/scripts/drive_check",
-    "/usr/bin/mkdir -p ~/.config/filebrowser",
-    "/usr/bin/mkdir -p ~/.config/flood",
+    "/usr/bin/mkdir -p ~/.config/autostart",
     "/usr/bin/mkdir -p ~/.config/jellyfin",
     "/usr/bin/mkdir -p ~/.config/rtorrent",
+    "/usr/bin/mkdir -p ~/.config/scripts/drive_check",
+    "/usr/bin/mkdir -p ~/.config/scripts/kodi",
     "/usr/bin/mkdir -p ~/.config/systemd/user/autorestic@drive.service.d",
     "/usr/bin/mkdir -p ~/.config/systemd/user/syncthing.conf.d",
-    "/usr/bin/mkdir -p ~/.config/scripts/kodi",
-    "/usr/bin/mkdir -p ~/.kodi/userdata/keymaps",
     "/usr/bin/mkdir -p ~/.config/udev",
+    "/usr/bin/mkdir -p ~/.kodi/userdata/keymaps",
     "/usr/bin/sudo /usr/bin/mkdir -p /etc/udev/hwdb.d",
     "/usr/bin/sudo /usr/bin/rm -f /etc/udev/hwdb.d/remote.hwdb",
     "/usr/bin/systemctl --user daemon-reload",
 ]
 posthooks = [
-    "/usr/bin/systemctl --user daemon-reload",
     "/usr/bin/sudo /usr/bin/ln -s ~/.config/udev/remote.hwdb /etc/udev/hwdb.d/remote.hwdb",
     "/usr/bin/sudo /usr/bin/systemd-hwdb update",
     "/usr/bin/sudo /usr/bin/udevadm trigger",
+    "/usr/bin/systemctl --user daemon-reload",
     "echo 'Create new SSH key for tunnel destination and add it'",
 ]
+
 
 [profiles.local.dots]
 ## Timers, most of which have the same setting
@@ -101,12 +100,13 @@ radarr_timer = { source = "services/bazarr.timer", target = ".config/systemd/use
 rtorrent_timer = { source = "services/bazarr.timer", target = ".config/systemd/user/rtorrent.timer" }
 sonarr_timer = { source = "services/bazarr.timer", target = ".config/systemd/user/sonarr.timer" }
 syncthing_timer = { source = "services/bazarr.timer", target = ".config/systemd/user/syncthing.timer" }
-# Scheduled timer
+
+## Services and the unique timers that come with them
+# Backup services
 autorestic_local_timer = { source = "services/autorestic@local.timer", target = ".config/systemd/user/autorestic@local.timer" }
 autorestic_drive_timer = { source = "services/autorestic@drive.timer", target = ".config/systemd/user/autorestic@drive.timer" }
 autorestic_drive_override = {source = "services/override-after-drive.conf", target = ".config/systemd/user/autorestic@drive.service.d/override.conf" }
-
-## Services and the unique timers that come with them
+# Other services
 bazarr_service = { source = "services/bazarr.service", target = ".config/systemd/user/bazarr.service" }
 caddy_service = { source = "services/caddy.service", target = ".config/systemd/user/caddy.service" }
 dave_service = { source = "services/dave.service", target = ".config/systemd/user/dave.service" }
@@ -129,10 +129,12 @@ sonarr_service = { source = "services/sonarr.service", target = ".config/systemd
 syncthing_service_override = { source = "services/override-after-drive.conf", target = ".config/systemd/user/syncthing.service.d/override.conf" }
 
 ## Kodi
+# Helper scripts
 kodi_autostart = { source = "services/kodi.desktop", target = ".config/autostart/kodi.desktop" }
 kodi_script = { source = "scripts/kodi/jellyfin-helper.py", target = ".config/scripts/kodi/jellyfin-helper.py" }
-remote_db = { source = "kodi/remote.hwdb", target = ".config/udev/remote.hwdb" }
+# Remote
 keymap = { source = "kodi/remote.xml", target = ".kodi/userdata/keymaps/remote.xml" }
+remote_db = { source = "kodi/remote.hwdb", target = ".config/udev/remote.hwdb" }
 
 ## rtorrent config
 rtorrent_config = { source = "individual/rtorrentconf", target = ".config/rtorrent/config" }
