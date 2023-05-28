@@ -1,0 +1,11 @@
+[Unit]
+Description=Continuous check that $MOUNT_PATH is mounted
+OnFailure=drive-warn.service
+
+[Service]
+EnvironmentFile=%h/.config/scripts/drive_check/env
+Type=simple
+ExecStart=%h/.config/scripts/drive_check/run.py
+
+[Install]
+WantedBy=default.target
