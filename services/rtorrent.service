@@ -10,6 +10,7 @@ ExecStart=/usr/bin/rtorrent -n -o import=%h/.config/rtorrent/config
 WorkingDirectory=%h/.config/rtorrent
 Restart=on-failure
 RestartSec=3
+# for some reason only SIGKILL works while SIGINT and SIGTERM time out
 KillSignal=SIGKILL
 
 [Install]
