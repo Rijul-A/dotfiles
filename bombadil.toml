@@ -19,10 +19,15 @@ zsh_init = { source = "zsh/init.zsh", target = ".zsh/init.zsh" }
 [profiles.remote]
 prehooks = [
     "/usr/bin/mkdir -p ~/.config/systemd/user",
+    "/usr/bin/sudo /usr/bin/rm -f /etc/systemd/system/autorestic@.service",
+    "/usr/bin/sudo /usr/bin/rm -f /etc/systemd/system/autorestic@remote.timer",
     "/usr/bin/sudo /usr/bin/rm -f /etc/systemd/system/backup-mailcow.service",
     "/usr/bin/sudo /usr/bin/rm -f /etc/systemd/system/backup-mailcow.timer",
+    "/usr/bin/sudo /usr/bin/systemctl daemon-reload",
 ]
 posthooks = [
+    "/usr/bin/sudo /usr/bin/ln -s ~/.config/systemd/user/backup-mailcow.service /etc/systemd/system/autorestic@.service",
+    "/usr/bin/sudo /usr/bin/ln -s ~/.config/systemd/user/backup-mailcow.service /etc/systemd/system/autorestic@remote.timer",
     "/usr/bin/sudo /usr/bin/ln -s ~/.config/systemd/user/backup-mailcow.service /etc/systemd/system/backup-mailcow.service",
     "/usr/bin/sudo /usr/bin/ln -s ~/.config/systemd/user/backup-mailcow.timer /etc/systemd/system/backup-mailcow.timer",
     "/usr/bin/sudo /usr/bin/systemctl daemon-reload",
@@ -30,6 +35,8 @@ posthooks = [
 ]
 
 [profiles.remote.dots]
+autorestic_service = { source = "services/autorestic@.service", target = ".config/systemd/user/autorestic@.service" }
+autorestic_timer = { source = "services/autorestic@remote.timer", target = ".config/systemd/user/autorestic@remote.timer" }
 backup_mailcow_service = { source = "services/backup-mailcow.service", target = ".config/systemd/user/backup-mailcow.service" }
 backup_mailcow_timer = { source = "services/backup-mailcow.timer", target = ".config/systemd/user/backup-mailcow.timer" }
 space_check_service = { source = "services/space-check.service", target = ".config/systemd/user/space-check.service" }
