@@ -1,0 +1,12 @@
+[Unit]
+Description=Backup of the location %I using autorestic
+After=default.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/.config/autorestic
+EnvironmentFile=%h/.config/autorestic/env
+ExecStart=/usr/bin/autorestic --verbose backup -l %I
+
+[Install]
+WantedBy=default.target

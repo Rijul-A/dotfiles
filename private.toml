@@ -26,6 +26,7 @@ code_config = { source = "individual/vscode.json", target = ".config/Code/User/s
 brownie_config = { source = "individual/brownie.yaml", target = "brownie-config.yaml" }
 gnupg_config = { source = "individual/gnupgconf", target = ".gnupg/gpg-agent.conf" }
 syncthing_service = { source = "services/syncthing.service", target = ".config/systemd/user/syncthing.service" }
+autorestic_service = { source = "services/autorestic@.service", target = ".config/systemd/user/autorestic@.service" }
 common_scripts = { source = "scripts/common", target = ".config/scripts/common" }
 
 [profiles.laptop]
@@ -99,6 +100,9 @@ radarr_timer = { source = "services/bazarr.timer", target = ".config/systemd/use
 rtorrent_timer = { source = "services/bazarr.timer", target = ".config/systemd/user/rtorrent.timer" }
 sonarr_timer = { source = "services/bazarr.timer", target = ".config/systemd/user/sonarr.timer" }
 syncthing_timer = { source = "services/bazarr.timer", target = ".config/systemd/user/syncthing.timer" }
+# Scheduled timer
+autorestic_home_timer = { source = "services/autorestic@home.timer", target = ".config/systemd/user/autorestic@home.timer" }
+autorestic_drive_timer = { source = "services/autorestic@drive.timer", target = ".config/systemd/user/autorestic@drive.timer" }
 
 ## Services and the unique timers that come with them
 bazarr_service = { source = "services/bazarr.service", target = ".config/systemd/user/bazarr.service" }
