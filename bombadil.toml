@@ -8,15 +8,15 @@ prehooks = [
 ]
 
 [settings.dots]
-gitconfig = { source = "gitconfig", target = ".gitconfig" }
-npmrc = { source = "npmrc", target = ".npmrc" }
-tmuxconf = { source = "tmuxconf", target = ".tmux.conf" }
-vimrc = { source = "vimrc", target = ".vimrc" }
+gitconfig = { source = "individual/gitconfig", target = ".gitconfig" }
+npmrc = { source = "individual/npmrc", target = ".npmrc" }
+tmuxconf = { source = "individual/tmuxconf", target = ".tmux.conf" }
+vimrc = { source = "individual/vimrc", target = ".vimrc" }
 zshrc = { source = "zsh/zshrc", target = ".zshrc" }
 zsh_init = { source = "zsh/init.zsh", target = ".zsh/init.zsh" }
-code_config = { source = "vscode.json", target = ".config/Code/User/settings.json" }
-brownie_config = { source = "brownie.yaml", target = "brownie-config.yaml" }
-gnupg_config = { source = "gnupgconf", target = ".gnupg/gpg-agent.conf" }
+code_config = { source = "individual/vscode.json", target = ".config/Code/User/settings.json" }
+brownie_config = { source = "individual/brownie.yaml", target = "brownie-config.yaml" }
+gnupg_config = { source = "individual/gnupgconf", target = ".gnupg/gpg-agent.conf" }
 
 [profiles.remote]
 posthooks = [
