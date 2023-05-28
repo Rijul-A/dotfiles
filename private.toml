@@ -57,6 +57,8 @@ posthooks = [
 ssh_agent_service = { source = "services/ssh-agent.service", target = ".config/systemd/user/ssh-agent.service" }
 # SSH configuration, which only goes on the laptop and nowhere else
 ssh_config = { source = "individual/sshconfig", target = ".ssh/config" }
+# Timer for backup
+autorestic_laptop_timer = { source = "services/autorestic@laptop.timer", target = ".config/systemd/user/autorestic@laptop.timer" }
 ## Laptop specific dots
 ath11k_service = { source = "services/ath11k-suspend.service", target = ".config/systemd/user/ath11k-suspend.service" }
 fix_mic_led_service = { source = "services/fix-mic-led.service", target = ".config/systemd/user/fix-mic-led.service" }
@@ -102,7 +104,7 @@ rtorrent_timer = { source = "services/bazarr.timer", target = ".config/systemd/u
 sonarr_timer = { source = "services/bazarr.timer", target = ".config/systemd/user/sonarr.timer" }
 syncthing_timer = { source = "services/bazarr.timer", target = ".config/systemd/user/syncthing.timer" }
 # Scheduled timer
-autorestic_home_timer = { source = "services/autorestic@home.timer", target = ".config/systemd/user/autorestic@home.timer" }
+autorestic_local_timer = { source = "services/autorestic@local.timer", target = ".config/systemd/user/autorestic@local.timer" }
 autorestic_drive_timer = { source = "services/autorestic@drive.timer", target = ".config/systemd/user/autorestic@drive.timer" }
 autorestic_drive_override = {source = "services/override-after-drive.conf", target = ".config/systemd/user/autorestic@drive.service.d/override.conf" }
 
