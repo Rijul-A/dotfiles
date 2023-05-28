@@ -1,0 +1,70 @@
+<keymap>
+  <global>
+    <keyboard>
+      <!--Hamburger-->
+      <key id="61952">ContextMenu</key>
+    </keyboard>
+  </global>
+  <fullscreeninfo>
+    <keyboard>
+      <i>Back</i>
+    </keyboard>
+  </fullscreeninfo>
+  <movieinformation>
+    <keyboard>
+      <i>Back</i>
+    </keyboard>
+  </movieinformation>
+  <musicinformation>
+    <keyboard>
+      <i>Back</i>
+    </keyboard>
+  </musicinformation>
+  <songinformation>
+    <keyboard>
+      <i>Back</i>
+    </keyboard>
+  </songinformation>
+  <pictureinfo>
+    <keyboard>
+      <i>Back</i>
+    </keyboard>
+  </pictureinfo>
+  <fullscreenvideo>
+    <keyboard>
+      <!--Center Button (return)-->
+      <key id="61453">PlayPause</key>
+      <!--Hamburger-->
+      <key id="61952">OSD</key>
+      <!--Next-->
+      <key id="61518">PlayerControl(Next)</key>
+    </keyboard>
+  </fullscreenvideo>
+  <visualisation>
+    <keyboard>
+      <!--Center Button (return)-->
+      <key id="61453">PlayPause</key>
+      <!--Hamburger-->
+      <key id="61952">OSD</key>
+      <!--Next-->
+      <key id="61518">PlayerControl(Next)</key>
+    </keyboard>
+  </visualisation>
+  <videoosd>
+    <keyboard>
+      <!--Hamburger-->
+      <key id="61952">OSD</key>
+      <!--Next-->
+      <key id="61518">PlayerControl(Next)</key>
+    </keyboard>
+  </videoosd>
+  <musicosd>
+    <keyboard>
+      <!--Hamburger-->
+      <key id="61952">OSD</key>
+      <!--Next-->
+      <key id="61518">PlayerControl(Next)</key>
+    </keyboard>
+  </musicosd>
+</keymap>
+

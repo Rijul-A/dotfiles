@@ -28,27 +28,6 @@ gnupg_config = { source = "gnupgconf", target = ".gnupg/gpg-agent.conf" }
 syncthing_service = { source = "services/syncthing.service", target = ".config/systemd/user/syncthing.service" }
 common_scripts = { source = "scripts/common", target = ".config/scripts/common" }
 
-[profiles.local]
-prehooks = [
-    "/usr/bin/mkdir -p ~/.config/bazarr",
-    "/usr/bin/mkdir -p ~/.config/scripts/drive_check",
-    "/usr/bin/mkdir -p ~/.config/filebrowser",
-    "/usr/bin/mkdir -p ~/.config/flood",
-    "/usr/bin/mkdir -p ~/.config/jellyfin",
-    "/usr/bin/mkdir -p ~/.config/systemd/user/syncthing.conf.d",
-    "/usr/bin/mkdir -p ~/.config/scripts/kodi",
-    "/usr/bin/mkdir -p ~/.config/udev",
-    "/usr/bin/sudo /usr/bin/mkdir -p /etc/udev/hwdb.d",
-    "/usr/bin/sudo /usr/bin/rm -f /etc/udev/hwdb.d/remote.hwdb",
-    "/usr/bin/systemctl --user daemon-reload",
-]
-posthooks = [
-    "/usr/bin/sudo /usr/bin/ln -s ~/.config/udev/remote.hwdb /etc/udev/hwdb.d/remote.hwdb",
-    "/usr/bin/sudo /usr/bin/systemd-hwdb update",
-    "/usr/bin/sudo /usr/bin/udevadm trigger",
-    "echo 'Create new SSH key for tunnel destination and add it'",
-]
-
 [profiles.laptop]
 # Unfortunately bombadil does not quit if a prehook fails, so checking if we are root is pointless
 # As a workaround, add /usr/bin/sudo to each posthook
@@ -61,6 +40,7 @@ prehooks = [
     "/usr/bin/sudo /usr/bin/systemctl daemon-reload",
 ]
 posthooks = [
+    # Without these services, the laptop cannot function as intended
     "/usr/bin/sudo /usr/bin/ln -s ~/.config/systemd/user/ath11k-suspend.service /etc/systemd/system/ath11k-suspend.service",
     "/usr/bin/sudo /usr/bin/ln -s ~/.config/systemd/user/fix-mic-led.service /etc/systemd/system/fix-mic-led.service",
     "/usr/bin/sudo /usr/bin/ln -s ~/.config/systemd/user/trackpoint-parameters.path /etc/systemd/system/trackpoint-parameters.path",
@@ -83,6 +63,28 @@ trackpoint_parameters_path = { source = "services/trackpoint-parameters.path", t
 trackpoint_parameters_service = { source = "services/trackpoint-parameters.service", target = ".config/systemd/user/trackpoint-parameters.service" }
 
 #### These are only linked under the `local` profile
+[profiles.local]
+prehooks = [
+    "/usr/bin/mkdir -p ~/.config/bazarr",
+    "/usr/bin/mkdir -p ~/.config/scripts/drive_check",
+    "/usr/bin/mkdir -p ~/.config/filebrowser",
+    "/usr/bin/mkdir -p ~/.config/flood",
+    "/usr/bin/mkdir -p ~/.config/jellyfin",
+    "/usr/bin/mkdir -p ~/.config/systemd/user/syncthing.conf.d",
+    "/usr/bin/mkdir -p ~/.config/scripts/kodi",
+    "/usr/bin/mkdir -p ~/.kodi/userdata/keymaps",
+    "/usr/bin/mkdir -p ~/.config/udev",
+    "/usr/bin/sudo /usr/bin/mkdir -p /etc/udev/hwdb.d",
+    "/usr/bin/sudo /usr/bin/rm -f /etc/udev/hwdb.d/remote.hwdb",
+    "/usr/bin/systemctl --user daemon-reload",
+]
+posthooks = [
+    "/usr/bin/sudo /usr/bin/ln -s ~/.config/udev/remote.hwdb /etc/udev/hwdb.d/remote.hwdb",
+    "/usr/bin/sudo /usr/bin/systemd-hwdb update",
+    "/usr/bin/sudo /usr/bin/udevadm trigger",
+    "echo 'Create new SSH key for tunnel destination and add it'",
+]
+
 [profiles.local.dots]
 ## Timers, most of which have the same setting
 bazarr_timer = { source = "services/bazarr.timer", target = ".config/systemd/user/bazarr.timer" }
@@ -120,4 +122,5 @@ syncthing_service_override = { source = "services/syncthing.service.d/override.c
 ## Kodi
 kodi_autostart = { source = "services/kodi.desktop", target = ".config/autostart/kodi.desktop" }
 kodi_script = { source = "scripts/kodi/jellyfin-helper.py", target = ".config/scripts/kodi/jellyfin-helper.py" }
-remote_db = { source = "udev/remote.hwdb", target = ".config/udev/remote.hwdb" }
+remote_db = { source = "kodi/remote.hwdb", target = ".config/udev/remote.hwdb" }
+keymap = { source = "kodi/remote.xml", target = ".kodi/userdata/keymaps/remote.xml" }
