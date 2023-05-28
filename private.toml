@@ -16,15 +16,15 @@ posthooks = [
 
 #### These are common across all profiles
 [settings.dots]
-gitconfig = { source = "gitconfig", target = ".gitconfig" }
-npmrc = { source = "npmrc", target = ".npmrc" }
-tmuxconf = { source = "tmuxconf", target = ".tmux.conf" }
-vimrc = { source = "vimrc", target = ".vimrc" }
-zshrc = { source = "zshrc", target = ".zshrc" }
+gitconfig = { source = "individual/gitconfig", target = ".gitconfig" }
+npmrc = { source = "individual/npmrc", target = ".npmrc" }
+tmuxconf = { source = "individual/tmuxconf", target = ".tmux.conf" }
+vimrc = { source = "individual/vimrc", target = ".vimrc" }
+zshrc = { source = "zsh/zshrc", target = ".zshrc" }
 zsh_init = { source = "zsh/init.zsh", target = ".zsh/init.zsh" }
-code_config = { source = "vscode.json", target = ".config/Code/User/settings.json" }
-brownie_config = { source = "brownie.yaml", target = "brownie-config.yaml" }
-gnupg_config = { source = "gnupgconf", target = ".gnupg/gpg-agent.conf" }
+code_config = { source = "individual/vscode.json", target = ".config/Code/User/settings.json" }
+brownie_config = { source = "individual/brownie.yaml", target = "brownie-config.yaml" }
+gnupg_config = { source = "individual/gnupgconf", target = ".gnupg/gpg-agent.conf" }
 syncthing_service = { source = "services/syncthing.service", target = ".config/systemd/user/syncthing.service" }
 common_scripts = { source = "scripts/common", target = ".config/scripts/common" }
 
@@ -55,7 +55,7 @@ posthooks = [
 # SSH agent required by KeePassXC
 ssh_agent_service = { source = "services/ssh-agent.service", target = ".config/systemd/user/ssh-agent.service" }
 # SSH configuration, which only goes on the laptop and nowhere else
-ssh_config = { source = "sshconfig", target = ".ssh/config" }
+ssh_config = { source = "individual/sshconfig", target = ".ssh/config" }
 ## Laptop specific dots
 ath11k_service = { source = "services/ath11k-suspend.service", target = ".config/systemd/user/ath11k-suspend.service" }
 fix_mic_led_service = { source = "services/fix-mic-led.service", target = ".config/systemd/user/fix-mic-led.service" }
@@ -129,4 +129,4 @@ remote_db = { source = "kodi/remote.hwdb", target = ".config/udev/remote.hwdb" }
 keymap = { source = "kodi/remote.xml", target = ".kodi/userdata/keymaps/remote.xml" }
 
 ## rtorrent config
-rtorrent_config = { source = "rtorrentconf", target = ".config/rtorrent/config" }
+rtorrent_config = { source = "individual/rtorrentconf", target = ".config/rtorrent/config" }

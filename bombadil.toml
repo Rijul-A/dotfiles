@@ -12,7 +12,7 @@ gitconfig = { source = "gitconfig", target = ".gitconfig" }
 npmrc = { source = "npmrc", target = ".npmrc" }
 tmuxconf = { source = "tmuxconf", target = ".tmux.conf" }
 vimrc = { source = "vimrc", target = ".vimrc" }
-zshrc = { source = "zshrc", target = ".zshrc" }
+zshrc = { source = "zsh/zshrc", target = ".zshrc" }
 zsh_init = { source = "zsh/init.zsh", target = ".zsh/init.zsh" }
 code_config = { source = "vscode.json", target = ".config/Code/User/settings.json" }
 brownie_config = { source = "brownie.yaml", target = "brownie-config.yaml" }
