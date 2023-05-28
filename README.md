@@ -18,8 +18,13 @@ Or, for the `local` profile
 bombadil install private.toml
 bombadil link -p local
 ```
+Or, for the `laptop` profile
+```bash
+bombadil install private.toml
+bombadil link -p laptop
+```
 
-For (public) systems that just need a quick start, run:
+For (public) systems that just need a quick start, run, optionally with `-p remote`:
 ```bash
 bombadil install bombadil.tml
 bombadil link
