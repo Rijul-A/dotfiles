@@ -104,7 +104,7 @@ syncthing_timer = { source = "services/bazarr.timer", target = ".config/systemd/
 # Scheduled timer
 autorestic_home_timer = { source = "services/autorestic@home.timer", target = ".config/systemd/user/autorestic@home.timer" }
 autorestic_drive_timer = { source = "services/autorestic@drive.timer", target = ".config/systemd/user/autorestic@drive.timer" }
-autorestic_drive_override = {source = "services/override-after-drive.conf", target = ".config/systemd/user/autorestic@drive.service/override.conf" }
+autorestic_drive_override = {source = "services/override-after-drive.conf", target = ".config/systemd/user/autorestic@drive.service.d/override.conf" }
 
 ## Services and the unique timers that come with them
 bazarr_service = { source = "services/bazarr.service", target = ".config/systemd/user/bazarr.service" }
