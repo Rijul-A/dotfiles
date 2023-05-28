@@ -5,6 +5,7 @@ After=default.target
 [Service]
 Type=simple
 WorkingDirectory=%h/.config/autorestic
+# AUTORESTIC_BACKEND_RESTIC_PASSWORD, RCLONE_BWLIMIT, RCLONE_VERBOSE
 EnvironmentFile=%h/.config/autorestic/env
 ExecStart=/usr/bin/autorestic --verbose backup -l %I
 

@@ -4,7 +4,9 @@ Documentation=https://caddyserver.com/docs/
 
 [Service]
 Type=notify
+# PROXIED_DOMAIN, PROXY_TO, CLOUDFLARE_AUTH_TOKEN
 EnvironmentFile=%h/.config/caddy/env
+# For Caddy to bind to port 80, use sudo setcap 'cap_net_bind_service=+ep' $(which caddy)
 ExecStart=%h/.local/bin/caddy run --environ --config %h/.config/caddy/caddyConfig.yaml --adapter yaml
 ExecReload=%h/.local/bin/caddy reload --config %h/.config/caddy/caddyConfig.yaml --force --adapter yaml
 TimeoutStopSec=5s
