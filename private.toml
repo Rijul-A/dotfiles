@@ -102,7 +102,7 @@ syncthing_timer = { source = "services/bazarr.timer", target = ".config/systemd/
 bazarr_service = { source = "services/bazarr.service", target = ".config/systemd/user/bazarr.service" }
 caddy_service = { source = "services/caddy.service", target = ".config/systemd/user/caddy.service" }
 drive_check_service = { source = "services/drive-check.service", target = ".config/systemd/user/drive-check.service" }
-drive_check_scripts = { source = "scripts/drive_check", target = ".config/scripts/drive_check" }
+drive_check_scripts = { source = "scripts/drive_check/run.py", target = ".config/scripts/drive_check/run.py" }
 drive_check_env = { source = "envs/drive_check", target = ".config/scripts/drive_check/env" }
 # To help speed up boot, this timer is shorter than the others, since only after this is done can others start
 drive_check_timer = { source = "services/drive-check.timer", target = ".config/systemd/user/drive-check.timer" }
