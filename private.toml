@@ -79,6 +79,7 @@ prehooks = [
     "/usr/bin/systemctl --user daemon-reload",
 ]
 posthooks = [
+    "/usr/bin/systemctl --user daemon-reload",
     "/usr/bin/sudo /usr/bin/ln -s ~/.config/udev/remote.hwdb /etc/udev/hwdb.d/remote.hwdb",
     "/usr/bin/sudo /usr/bin/systemd-hwdb update",
     "/usr/bin/sudo /usr/bin/udevadm trigger",
