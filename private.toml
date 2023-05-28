@@ -37,6 +37,10 @@ prehooks = [
     # "/bin/bash -c 'if [ $(id -u) -ne 0 ]; then exit 1; fi;'",
     "/usr/bin/mkdir -p ~/.config/Code/User",
     "/usr/bin/mkdir -p ~/.ssh",
+    "/usr/bin/sudo /usr/bin/rm -f /etc/systemd/system/ath11k-suspend.service",
+    "/usr/bin/sudo /usr/bin/rm -f /etc/systemd/system/fix-mic-led.service",
+    "/usr/bin/sudo /usr/bin/rm -f /etc/systemd/system/trackpoint-parameters.path",
+    "/usr/bin/sudo /usr/bin/rm -f /etc/systemd/system/trackpoint-parameters.service",
 ]
 posthooks = [
     "/usr/bin/sudo /usr/bin/ln -s ~/.config/systemd/user/ath11k-suspend.service /etc/systemd/system/ath11k-suspend.service",

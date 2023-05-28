@@ -19,6 +19,8 @@ zsh_init = { source = "zsh/init.zsh", target = ".zsh/init.zsh" }
 [profiles.remote]
 prehooks = [
     "/usr/bin/mkdir -p ~/.config/systemd/user",
+    "/usr/bin/sudo /usr/bin/rm -f /etc/systemd/system/backup-mailcow.service",
+    "/usr/bin/sudo /usr/bin/rm -f /etc/systemd/system/backup-mailcow.timer",
 ]
 posthooks = [
     "/usr/bin/sudo /usr/bin/ln -s ~/.config/systemd/user/backup-mailcow.service /etc/systemd/system/backup-mailcow.service",
