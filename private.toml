@@ -72,6 +72,7 @@ prehooks = [
     "/usr/bin/mkdir -p ~/.config/flood",
     "/usr/bin/mkdir -p ~/.config/jellyfin",
     "/usr/bin/mkdir -p ~/.config/rtorrent",
+    "/usr/bin/mkdir -p ~/.config/systemd/user/autorestic@drive.service.d",
     "/usr/bin/mkdir -p ~/.config/systemd/user/syncthing.conf.d",
     "/usr/bin/mkdir -p ~/.config/scripts/kodi",
     "/usr/bin/mkdir -p ~/.kodi/userdata/keymaps",
@@ -103,6 +104,7 @@ syncthing_timer = { source = "services/bazarr.timer", target = ".config/systemd/
 # Scheduled timer
 autorestic_home_timer = { source = "services/autorestic@home.timer", target = ".config/systemd/user/autorestic@home.timer" }
 autorestic_drive_timer = { source = "services/autorestic@drive.timer", target = ".config/systemd/user/autorestic@drive.timer" }
+autorestic_drive_override = {source = "services/override-after-drive.conf", target = ".config/systemd/user/autorestic@drive.service/override.conf" }
 
 ## Services and the unique timers that come with them
 bazarr_service = { source = "services/bazarr.service", target = ".config/systemd/user/bazarr.service" }
@@ -124,7 +126,7 @@ reverse_tunnel_service = { source = "services/reverse-tunnel-@.service", target 
 rtorrent_service = { source = "services/rtorrent.service", target = ".config/systemd/user/rtorrent.service" }
 sonarr_service = { source = "services/sonarr.service", target = ".config/systemd/user/sonarr.service" }
 # Drive dependency
-syncthing_service_override = { source = "services/syncthing.service.d/override.conf", target = ".config/systemd/user/syncthing.service.d/override.conf" }
+syncthing_service_override = { source = "services/override-after-drive.conf", target = ".config/systemd/user/syncthing.service.d/override.conf" }
 
 ## Kodi
 kodi_autostart = { source = "services/kodi.desktop", target = ".config/autostart/kodi.desktop" }
