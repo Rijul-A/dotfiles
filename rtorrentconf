@@ -1,0 +1,42 @@
+# daemon mode
+system.daemon.set = true
+
+# Where rTorrent saves the downloaded files
+directory.default.set = {{drive_check_target}}/Downloads/
+
+# Where rTorrent saves the session
+session.path.set = ./session
+ 
+# Which ports rTorrent can use (Make sure to open them in your router)
+network.port_range.set = 50000-50000
+network.port_random.set = no
+ 
+# Enable DHT (for torrents without trackers)
+dht.mode.set = on
+protocol.pex.set = 1
+
+# Use UDP trackers
+trackers.use_udp.set = yes
+ 
+# Enable encryption when possible
+protocol.encryption.set = allow_incoming,try_outgoing,enable_retry
+
+# SCGI port, used to communicate with Flood
+network.scgi.open_local = ./socket
+
+# Upload speed
+# throttle.global_up.max_rate.set_kb = 100
+
+# Download speed
+# throttle.global_down.max_rate.set_kb=819200
+
+# Do not hash on completion
+pieces.hash.on_completion.set = no
+
+# Preallocate files; reduces defragmentation on filesystems.
+system.file.allocate = 1
+
+# Auto load torrents from ./auto folder
+schedule2 = watch_directory,5,5,load.start=./auto/*.torrent
+schedule2 = untied_directory,5,5,stop_untied=
+schedule2 = tied_directory,5,5,start_tied=

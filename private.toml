@@ -70,6 +70,7 @@ prehooks = [
     "/usr/bin/mkdir -p ~/.config/filebrowser",
     "/usr/bin/mkdir -p ~/.config/flood",
     "/usr/bin/mkdir -p ~/.config/jellyfin",
+    "/usr/bin/mkdir -p ~/.config/rtorrent",
     "/usr/bin/mkdir -p ~/.config/systemd/user/syncthing.conf.d",
     "/usr/bin/mkdir -p ~/.config/scripts/kodi",
     "/usr/bin/mkdir -p ~/.kodi/userdata/keymaps",
@@ -125,3 +126,6 @@ kodi_autostart = { source = "services/kodi.desktop", target = ".config/autostart
 kodi_script = { source = "scripts/kodi/jellyfin-helper.py", target = ".config/scripts/kodi/jellyfin-helper.py" }
 remote_db = { source = "kodi/remote.hwdb", target = ".config/udev/remote.hwdb" }
 keymap = { source = "kodi/remote.xml", target = ".kodi/userdata/keymaps/remote.xml" }
+
+## rtorrent config
+rtorrent_config = { source = "rtorrentconf", target = ".config/rtorrent/config" }
