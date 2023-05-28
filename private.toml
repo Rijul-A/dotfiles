@@ -96,8 +96,6 @@ posthooks = [
 bazarr_timer = { source = "services/bazarr.timer", target = ".config/systemd/user/bazarr.timer" }
 dave_timer = { source = "services/bazarr.timer", target = ".config/systemd/user/dave.timer" }
 filebrowser_timer = { source = "services/bazarr.timer", target = ".config/systemd/user/filebrowser.timer" }
-# Flood depends on rtorrent and complains without it, so give it a timer too
-flood_timer = { source = "services/bazarr.timer", target = ".config/systemd/user/flood.timer" }
 jellyfin_timer = { source = "services/bazarr.timer", target = ".config/systemd/user/jellyfin.timer" }
 radarr_timer = { source = "services/bazarr.timer", target = ".config/systemd/user/radarr.timer" }
 rtorrent_timer = { source = "services/bazarr.timer", target = ".config/systemd/user/rtorrent.timer" }
