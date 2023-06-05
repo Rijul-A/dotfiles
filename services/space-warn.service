@@ -8,7 +8,7 @@ ExecStart=/usr/bin/bash \
     | /usr/bin/tail -1 \
     | /usr/bin/grep -o '[0-9]\+%' \
     | /usr/bin/sed 's/.$//'); \
-    /home/user/.local/bin/gotify push -p 10 -t 'Disk usage alert' 'Usage too high ($used%)'"
+    /home/user/.local/bin/gotify push -p 10 -t 'Disk usage alert' $used%"
 
 [Install]
 WantedBy=default.target
