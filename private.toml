@@ -37,19 +37,21 @@ prehooks = [
     # "/bin/bash -c 'if [ $(id -u) -ne 0 ]; then exit 1; fi;'",
     "/usr/bin/mkdir -p ~/.config/Code/User",
     "/usr/bin/mkdir -p ~/.ssh",
-    "/usr/bin/sudo /usr/bin/rm -f /etc/systemd/system/ath11k-suspend.service",
+    "/usr/bin/sudo /usr/bin/rm -f /etc/systemd/system/remove-mod-on-suspend@.service",
     "/usr/bin/sudo /usr/bin/rm -f /etc/systemd/system/fix-mic-led.service",
     "/usr/bin/sudo /usr/bin/rm -f /etc/systemd/system/trackpoint-parameters.path",
     "/usr/bin/sudo /usr/bin/rm -f /etc/systemd/system/trackpoint-parameters.service",
 ]
 posthooks = [
-    "/usr/bin/sudo /usr/bin/ln -s ~/.config/systemd/user/ath11k-suspend.service /etc/systemd/system/ath11k-suspend.service",
+    "/usr/bin/sudo /usr/bin/ln -s ~/.config/systemd/user/remove-mod-on-suspend@.service /etc/systemd/system/remove-mod-on-suspend@.service",
     "/usr/bin/sudo /usr/bin/ln -s ~/.config/systemd/user/fix-mic-led.service /etc/systemd/system/fix-mic-led.service",
     "/usr/bin/sudo /usr/bin/ln -s ~/.config/systemd/user/trackpoint-parameters.path /etc/systemd/system/trackpoint-parameters.path",
     "/usr/bin/sudo /usr/bin/ln -s ~/.config/systemd/user/trackpoint-parameters.service /etc/systemd/system/trackpoint-parameters.service",
     "/usr/bin/sudo /usr/bin/systemctl daemon-reload",
     # Without these services, the laptop cannot function as intended
-    "/usr/bin/sudo /usr/bin/systemctl enable ath11k-suspend",
+    "/usr/bin/sudo /usr/bin/systemctl enable remove-mod-on-suspend@ath11k_pci",
+    ## Sometimes the mouse buttons don't show up after hibernate(suspend?)
+    "/usr/bin/sudo /usr/bin/systemctl enable remove-mod-on-suspend@hid_multitouch",
     "/usr/bin/sudo /usr/bin/systemctl enable --now fix-mic-led",
     "/usr/bin/sudo /usr/bin/systemctl enable --now trackpoint-parameters.path",
 ]
@@ -64,7 +66,7 @@ ssh_config = { source = "individual/sshconfig", target = ".ssh/config" }
 # Timer for backup
 autorestic_laptop_timer = { source = "services/autorestic@laptop.timer", target = ".config/systemd/user/autorestic@laptop.timer" }
 ## Laptop specific dots
-ath11k_service = { source = "services/ath11k-suspend.service", target = ".config/systemd/user/ath11k-suspend.service" }
+remove_mod_on_suspend_service = { source = "services/remove-mod-on-suspend@.service", target = ".config/systemd/user/remove-mod-on-suspend@.service" }
 fix_mic_led_service = { source = "services/fix-mic-led.service", target = ".config/systemd/user/fix-mic-led.service" }
 trackpoint_parameters_path = { source = "services/trackpoint-parameters.path", target = ".config/systemd/user/trackpoint-parameters.path" }
 trackpoint_parameters_service = { source = "services/trackpoint-parameters.service", target = ".config/systemd/user/trackpoint-parameters.service" }

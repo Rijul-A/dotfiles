@@ -1,0 +1,14 @@
+[Unit]
+Description=Remove (and restore on resume) the %I firmware
+Before=suspend-then-hibernate.target suspend.target
+StopWhenUnneeded=yes
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStartPre=/usr/bin/bash -c '/usr/bin/lsmod | /usr/bin/grep %I > /dev/null'
+ExecStart=/usr/bin/modprobe -r %I
+ExecStop=/usr/bin/modprobe %I
+
+[Install]
+WantedBy=suspend-then-hibernate.target suspend.target
