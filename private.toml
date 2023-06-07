@@ -12,6 +12,7 @@ prehooks = [
 ]
 posthooks = [
     "/usr/bin/ln -f ~/.config/scripts/common/* ~/.local/bin/",
+    "/usr/bin/systemctl --user daemon-reload",
 ]
 
 #### These are common across all profiles
@@ -85,13 +86,11 @@ prehooks = [
     "/usr/bin/mkdir -p ~/.kodi/userdata/keymaps",
     "/usr/bin/sudo /usr/bin/mkdir -p /etc/udev/hwdb.d",
     "/usr/bin/sudo /usr/bin/rm -f /etc/udev/hwdb.d/remote.hwdb",
-    "/usr/bin/systemctl --user daemon-reload",
 ]
 posthooks = [
     "/usr/bin/sudo /usr/bin/ln -s ~/.config/udev/remote.hwdb /etc/udev/hwdb.d/remote.hwdb",
     "/usr/bin/sudo /usr/bin/systemd-hwdb update",
     "/usr/bin/sudo /usr/bin/udevadm trigger",
-    "/usr/bin/systemctl --user daemon-reload",
     "echo 'Create new SSH key for tunnel destination and add it'",
 ]
 
