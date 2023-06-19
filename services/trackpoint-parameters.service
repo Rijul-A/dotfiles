@@ -2,4 +2,6 @@
 Description=Set TrackPoint attributes
 
 [Service]
+Type=oneshot
+RemainAfterExit=yes
 ExecStart=/usr/bin/bash -c 'echo 64 > /sys/devices/platform/i8042/serio1/sensitivity'
