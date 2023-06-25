@@ -28,5 +28,6 @@
     "rust-analyzer.cargo.buildScripts.overrideCommand": null,
     "rust-analyzer.rustfmt.overrideCommand": null,
     "rust-analyzer.checkOnSave": true,
+    "editor.rulers": [72],
     "editor.renderWhitespace": "trailing"
 }
