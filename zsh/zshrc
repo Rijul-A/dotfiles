@@ -10,6 +10,8 @@ export PATH=$NPM_PACKAGES/bin:$PATH
 
 # Ruby gems (for example `fusuma`)
 export PATH=~/.local/share/gem/ruby/3.0.0/bin:$PATH
+# Cargo gems (for example `evcxr`)
+export PATH=~/.cargo/bin:$PATH
 # Manually installed binaries like `syncthing`
 export PATH=~/.local/bin:$PATH
 # Golang
