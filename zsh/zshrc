@@ -8,6 +8,8 @@ export MANPATH="${MANPATH-$(manpath)}:$NPM_PACKAGES/bin/share/man"
 # Make the binaries accessible via `which` and directly
 export PATH=$NPM_PACKAGES/bin:$PATH
 
+# For building files that rely on Go
+export GOPATH=~/go
 # Ruby gems (for example `fusuma`)
 export PATH=~/.local/share/gem/ruby/3.0.0/bin:$PATH
 # Cargo gems (for example `evcxr`)
