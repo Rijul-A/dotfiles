@@ -1,6 +1,6 @@
 [Timer]
-# Wait for 3 seconds after boot
-OnStartupSec=3s
+# Wait for 30 seconds after log in
+OnStartupSec=30s
 
 [Install]
 WantedBy=timers.target
