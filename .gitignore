@@ -2,3 +2,4 @@
 .zsh/config.zsh
 .zsh/p10k.zsh
 .dots
+venv
