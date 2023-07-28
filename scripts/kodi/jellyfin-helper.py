@@ -31,7 +31,7 @@ def notify( title, message, timeout = 2000 ):
     notice.set_timeout( timeout )
     notice.set_urgency( notify2.URGENCY_LOW )
     notice.show()
-    logging.info( title, message )
+    logging.info( "{} {}".format( title, message ) )
 
 
 def processRunning( name ):
