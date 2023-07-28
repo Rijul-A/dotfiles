@@ -1,13 +1,14 @@
 #!/usr/bin/python3
 import json
-import subprocess
-import psutil
-import time
-import notify2
+import logging
 import os
+import psutil
 import requests
+import subprocess
+import time
 
 from dotenv import load_dotenv
+import notify2
 from tendo import singleton
 
 # Wait up to 5 minutes + 12 seconds at maximum
@@ -30,6 +31,7 @@ def notify( title, message, timeout = 2000 ):
     notice.set_timeout( timeout )
     notice.set_urgency( notify2.URGENCY_LOW )
     notice.show()
+    logging.info( title, message )
 
 
 def processRunning( name ):
@@ -53,47 +55,55 @@ def isKodiRunning():
 
 
 def main():
+    logging.basicConfig( filename = "log.txt", level = logging.DEBUG )
     # Ensure only one instance can run
     _ = singleton.SingleInstance()
     # Exit if SSH testing
     if os.getenv( "XDG_SESSION_TYPE" ) == "tty":
+        logging.error( "Cannot launch kodi over SSH" )
         notify( "Error", "Cannot launch kodi over SSH" )
         return
+    # This is provided via the command line and not in .env
+    # So that the TV is not turned on at each reboot
+    if os.getenv( "IS_REMOTE" ):
+        logging.debug( "Remote mode" )
+        # All of the above variables are sent via .env
+        load_dotenv()
+        ip = os.getenv( "TV_IP_ADDRESS" )
+        pw = os.getenv( "TV_PASSWORD" )
+        mac = os.getenv( "TV_MAC_ADDRESS" )
+        hdmi = os.getenv( "TV_HDMI_PORT" )
+        if all( [ x is not None for x in [ ip, pw, mac, hdmi ] ] ):
+            logging.debug( "Have all TV related environment variables" )
+            # Wake up TV, if it is asleep
+            from wakeonlan import send_magic_packet
+            send_magic_packet( mac )
+            # inititalize TV object
+            from sony_bravia_api import Bravia
+            bravia = Bravia( 'TV', ip, 'http://{}/sony/'.format( ip ), pw )
+            bravia.setPower( True )
+            # If we are already on Kodi HDMI input, do nothing
+            # To avoid the "HDMI x" box showing up for no reason
+            switchToKodi = False
+            response = bravia.send( 'avContent',
+                                    'getPlayingContentInfo',
+                                    [] ).json()
+            if 'error' in response:
+                switchToKodi = True
+            else:
+                result = response.get( 'result',
+                                       [ {} ] )[ 0 ].get( 'title',
+                                                          '' )
+                switchToKodi = result != 'HDMI {}'.format( hdmi )
+            # Switch to Kodi
+            if switchToKodi:
+                bravia.setExtInput( 'hdmi', hdmi )
+            else:
+                logging.debug( "TV is already on Kodi port" )
+    else:
+        logging.debug( "Not remote mode" )
     # Ping Kodi, and show Home if ponged
     if isKodiRunning():
-        # This is provided via the command line and not in .env
-        # So that the TV is not turned on at each reboot
-        remote = os.getenv( "IS_REMOTE" )
-        if remote:
-            load_dotenv()
-            ip = os.getenv( "TV_IP_ADDRESS" )
-            pw = os.getenv( "TV_PASSWORD" )
-            mac = os.getenv( "TV_MAC_ADDRESS" )
-            hdmi = os.getenv( "TV_HDMI_PORT" )
-            if all(
-                [
-                    x is not None
-                    for x in [ remote,
-                               ip,
-                               pw,
-                               mac,
-                               hdmi ]
-                ]
-            ):
-                # Wake up TV, if it is asleep
-                from wakeonlan import send_magic_packet
-                send_magic_packet( mac )
-                # Turn it on
-                from sony_bravia_api import Bravia
-                bravia = Bravia(
-                    'TV',
-                    ip,
-                    'http://{}/sony/'.format( ip ),
-                    pw,
-                )
-                bravia.setPower( True )
-                # Switch to Kodi
-                bravia.setExtInput( 'hdmi', hdmi )
         # View Kodi Home
         notify( "Kodi running", "Going to home" )
         data = {
@@ -111,7 +121,7 @@ def main():
     flag = False
     while status_code != 200 and time.time() - start_time <= timeout:
         try:
-            # Ping Kodi
+            # Ping Jellyfin
             status_code = requests.post(
                 "http://localhost:8096/System/Ping"
             ).status_code
@@ -139,6 +149,7 @@ def main():
             while not isKodiRunning():
                 time.sleep( 1 )
     else:
+        logging.error( "Jellyfin not active; cannot start Kodi" )
         notify( "Error", "Jellyfin not active; cannot start Kodi" )
 
 
