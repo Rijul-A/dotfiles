@@ -50,6 +50,8 @@ posthooks = [
     "/usr/bin/sudo /usr/bin/ln -s ~/.config/systemd/user/trackpoint-parameters.service /etc/systemd/system/trackpoint-parameters.service",
     "/usr/bin/sudo /usr/bin/systemctl daemon-reload",
     # Without these services, the laptop cannot function as intended
+    # Other services, laptop continues to work without. So they are not
+    # automatically enabled by this profile.
     "/usr/bin/sudo /usr/bin/systemctl enable remove-mod-on-suspend@ath11k_pci",
     ## Sometimes the mouse buttons don't show up after hibernate(suspend?)
     "/usr/bin/sudo /usr/bin/systemctl enable remove-mod-on-suspend@hid_multitouch",
@@ -71,6 +73,7 @@ remove_mod_on_suspend_service = { source = "services/remove-mod-on-suspend@.serv
 fix_mic_led_service = { source = "services/fix-mic-led.service", target = ".config/systemd/user/fix-mic-led.service" }
 trackpoint_parameters_path = { source = "services/trackpoint-parameters.path", target = ".config/systemd/user/trackpoint-parameters.path" }
 trackpoint_parameters_service = { source = "services/trackpoint-parameters.service", target = ".config/systemd/user/trackpoint-parameters.service" }
+otd_autostart = { source = "services/opentabletdriver-daemon.desktop", target = ".config/autostart/opentabletdriver-daemon.desktop" }
 
 #### These are only linked under the `local` profile
 [profiles.local]

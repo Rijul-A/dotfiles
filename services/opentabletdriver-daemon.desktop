@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=OTD_VERSION
+Name=OpenTabletDriver Daemon
+Exec=systemctl --user start opentabletdriver.service
+Icon=otd
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=Accessories;
+StartupNotify=true
