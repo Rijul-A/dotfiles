@@ -94,8 +94,8 @@ prehooks = [
 ]
 posthooks = [
     "/usr/bin/sudo /usr/bin/ln -s ~/.config/udev/remote.hwdb /etc/udev/hwdb.d/remote.hwdb",
-    "/usr/bin/sudo /usr/bin/ln -s ~/.config/systemd/user/hwdb-update.path",
-    "/usr/bin/sudo /usr/bin/ln -s ~/.config/systemd/user/hwdb-update.service",
+    "/usr/bin/sudo /usr/bin/ln -s ~/.config/systemd/user/hwdb-update.path /etc/systemd/system/hwdb-update.path",
+    "/usr/bin/sudo /usr/bin/ln -s ~/.config/systemd/user/hwdb-update.service /etc/systemd/system/hwdb-update.service",
     "/usr/bin/sudo /usr/bin/systemctl enable --now hwdb-update.path",
     "echo 'Create new SSH key for tunnel destination and add it'",
 ]
