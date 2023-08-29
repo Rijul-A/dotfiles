@@ -1,0 +1,8 @@
+[Unit]
+Description=Wait for remote config to appear and load it
+
+[Path]
+PathExists=/etc/udev/hwdb.d/remote.hwdb
+
+[Install]
+WantedBy=default.target
