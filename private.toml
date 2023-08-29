@@ -89,14 +89,11 @@ prehooks = [
     "/usr/bin/mkdir -p ~/.kodi/userdata/keymaps",
     "/usr/bin/sudo /usr/bin/mkdir -p /etc/udev/hwdb.d",
     "/usr/bin/sudo /usr/bin/rm -f /etc/udev/hwdb.d/remote.hwdb",
-    "/usr/bin/sudo /usr/bin/rm -f /etc/systemd/system/hwdb-update.path",
-    "/usr/bin/sudo /usr/bin/rm -f /etc/systemd/system/hwdb-update.service",
 ]
 posthooks = [
     "/usr/bin/sudo /usr/bin/ln -s ~/.config/udev/remote.hwdb /etc/udev/hwdb.d/remote.hwdb",
-    "/usr/bin/sudo /usr/bin/ln -s ~/.config/systemd/user/hwdb-update.path /etc/systemd/system/hwdb-update.path",
-    "/usr/bin/sudo /usr/bin/ln -s ~/.config/systemd/user/hwdb-update.service /etc/systemd/system/hwdb-update.service",
-    "/usr/bin/sudo /usr/bin/systemctl enable --now hwdb-update.path",
+    "/usr/bin/sudo /usr/bin/systemd-hwdb update",
+    "/usr/bin/sudo /usr/bin/udevadm trigger",
     "echo 'Create new SSH key for tunnel destination and add it'",
 ]
 
@@ -116,7 +113,7 @@ syncthing_timer = { source = "services/bazarr.timer", target = ".config/systemd/
 # Backup services
 autorestic_local_timer = { source = "services/autorestic@local.timer", target = ".config/systemd/user/autorestic@local.timer" }
 autorestic_drive_timer = { source = "services/autorestic@drive.timer", target = ".config/systemd/user/autorestic@drive.timer" }
-autorestic_drive_override = { source = "services/override-after-drive.conf", target = ".config/systemd/user/autorestic@drive.service.d/override.conf" }
+autorestic_drive_override = {source = "services/override-after-drive.conf", target = ".config/systemd/user/autorestic@drive.service.d/override.conf" }
 # Other services
 bazarr_service = { source = "services/bazarr.service", target = ".config/systemd/user/bazarr.service" }
 caddy_service = { source = "services/caddy.service", target = ".config/systemd/user/caddy.service" }
@@ -146,8 +143,6 @@ kodi_script = { source = "scripts/kodi/jellyfin-helper.py", target = ".config/sc
 # Remote
 keymap = { source = "kodi/remote.xml", target = ".kodi/userdata/keymaps/remote.xml" }
 remote_db = { source = "kodi/remote.hwdb", target = ".config/udev/remote.hwdb" }
-hwdb_update_path = { source = "services/hwdb-update.path", target = ".config/systemd/user/hwdb-update.path" }
-hwdb_update_service = { source = "services/hwdb-update.service", target = ".config/systemd/user/hwdb-update.service" }
 
 ## rtorrent config
 rtorrent_config = { source = "individual/rtorrentconf", target = ".config/rtorrent/config" }
