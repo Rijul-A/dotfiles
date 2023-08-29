@@ -91,7 +91,8 @@ prehooks = [
     "/usr/bin/sudo /usr/bin/rm -f /etc/udev/hwdb.d/remote.hwdb",
 ]
 posthooks = [
-    "/usr/bin/sudo /usr/bin/ln -s ~/.config/udev/remote.hwdb /etc/udev/hwdb.d/remote.hwdb",
+    # `cp` is preferred over `ln -s` if `/home` is a different partition
+    "/usr/bin/sudo /usr/bin/cp ~/.config/udev/remote.hwdb /etc/udev/hwdb.d/remote.hwdb",
     "/usr/bin/sudo /usr/bin/systemd-hwdb update",
     "/usr/bin/sudo /usr/bin/udevadm trigger",
     "echo 'Create new SSH key for tunnel destination and add it'",
