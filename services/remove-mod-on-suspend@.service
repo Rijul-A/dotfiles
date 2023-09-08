@@ -1,6 +1,6 @@
 [Unit]
 Description=Remove (and restore on resume) the %I firmware
-Before=suspend-then-hibernate.target suspend.target
+Before=hibernate.target suspend-then-hibernate.target suspend.target
 StopWhenUnneeded=yes
 
 [Service]
@@ -11,4 +11,4 @@ ExecStart=/usr/bin/modprobe -r %I
 ExecStop=/usr/bin/modprobe %I
 
 [Install]
-WantedBy=suspend-then-hibernate.target suspend.target
+WantedBy=hibernate.target suspend-then-hibernate.target suspend.target
