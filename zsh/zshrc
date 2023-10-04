@@ -12,6 +12,8 @@ export PATH=$NPM_PACKAGES/bin:$PATH
 export GOPATH=~/go
 # Ruby gems (for example `fusuma`)
 export PATH=~/.local/share/gem/ruby/3.0.0/bin:$PATH
+# Bundle gems for jekyll etc
+export BUNDLE_PATH=~/.cache/gems
 # Cargo gems (for example `evcxr`)
 export PATH=~/.cargo/bin:$PATH
 # Manually installed binaries like `syncthing`
