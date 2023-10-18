@@ -39,12 +39,14 @@ prehooks = [
     "/usr/bin/mkdir -p ~/.config/Code/User",
     "/usr/bin/mkdir -p ~/.ssh",
     "/usr/bin/sudo /usr/bin/rm -f /etc/systemd/system/remove-mod-on-suspend@.service",
+    "/usr/bin/sudo /usr/bin/rm -f /etc/systemd/system/stop-service-on-suspend@.service",
     "/usr/bin/sudo /usr/bin/rm -f /etc/systemd/system/fix-mic-led.service",
     "/usr/bin/sudo /usr/bin/rm -f /etc/systemd/system/trackpoint-parameters.path",
     "/usr/bin/sudo /usr/bin/rm -f /etc/systemd/system/trackpoint-parameters.service",
 ]
 posthooks = [
     "/usr/bin/sudo /usr/bin/ln -s ~/.config/systemd/user/remove-mod-on-suspend@.service /etc/systemd/system/remove-mod-on-suspend@.service",
+    "/usr/bin/sudo /usr/bin/ln -s ~/.config/systemd/user/stop-service-on-suspend@.service /etc/systemd/system/stop-service-on-suspend@.service",
     "/usr/bin/sudo /usr/bin/ln -s ~/.config/systemd/user/fix-mic-led.service /etc/systemd/system/fix-mic-led.service",
     "/usr/bin/sudo /usr/bin/ln -s ~/.config/systemd/user/trackpoint-parameters.path /etc/systemd/system/trackpoint-parameters.path",
     "/usr/bin/sudo /usr/bin/ln -s ~/.config/systemd/user/trackpoint-parameters.service /etc/systemd/system/trackpoint-parameters.service",
@@ -55,6 +57,8 @@ posthooks = [
     "/usr/bin/sudo /usr/bin/systemctl enable remove-mod-on-suspend@ath11k_pci",
     ## Sometimes the mouse buttons don't show up after hibernate(suspend?)
     "/usr/bin/sudo /usr/bin/systemctl enable remove-mod-on-suspend@hid_multitouch",
+    ## Sometimes this service prevent system from going to sleep
+    "/usr/bin/sudo /usr/bin/systemctl enable stop-service-on-suspend@autofs",
     "/usr/bin/sudo /usr/bin/systemctl enable --now fix-mic-led",
     "/usr/bin/sudo /usr/bin/systemctl enable --now trackpoint-parameters.path",
 ]
@@ -70,6 +74,7 @@ ssh_config = { source = "individual/sshconfig", target = ".ssh/config" }
 autorestic_laptop_timer = { source = "services/autorestic@laptop.timer", target = ".config/systemd/user/autorestic@laptop.timer" }
 ## Laptop specific dots
 remove_mod_on_suspend_service = { source = "services/remove-mod-on-suspend@.service", target = ".config/systemd/user/remove-mod-on-suspend@.service" }
+stop_service_on_suspend_service = { source = "services/stop-service-on-suspend@.service", target = ".config/systemd/user/stop-service-on-suspend@.service" }
 fix_mic_led_service = { source = "services/fix-mic-led.service", target = ".config/systemd/user/fix-mic-led.service" }
 trackpoint_parameters_path = { source = "services/trackpoint-parameters.path", target = ".config/systemd/user/trackpoint-parameters.path" }
 trackpoint_parameters_service = { source = "services/trackpoint-parameters.service", target = ".config/systemd/user/trackpoint-parameters.service" }

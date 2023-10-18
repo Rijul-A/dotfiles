@@ -1,0 +1,14 @@
+[Unit]
+Description=Stop the %I service on suspend and start on resume
+Before=hibernate.target suspend-then-hibernate.target suspend.target
+StopWhenUnneeded=yes
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStartPre=/usr/bin/systemctl is-active %I.service
+ExecStart=/usr/bin/systemctl stop %I.service
+ExecStop=/usr/bin/systemctl start %I.service
+
+[Install]
+WantedBy=hibernate.target suspend-then-hibernate.target suspend.target
