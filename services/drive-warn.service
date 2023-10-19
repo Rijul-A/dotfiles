@@ -3,7 +3,7 @@ Description=Notify mount failure
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/gotify push -t {{drive_check_target}} "Mount missing"
+ExecStart=/usr/bin/gotify push -t {{drive_check_target}} "Mount missing" --priority 10
 ExecStartPost=/usr/bin/curl \
     -X POST \
     -H "Content-Type: application/json" \
