@@ -6,14 +6,22 @@ Documentation=https://caddyserver.com/docs/
 Type=notify
 # PROXIED_DOMAIN, PROXY_TO, CLOUDFLARE_AUTH_TOKEN
 EnvironmentFile=%h/.config/caddy/env
-# For Caddy to bind to port 80, use sudo setcap 'cap_net_bind_service=+ep' $(which caddy)
 ExecStart=%h/.local/bin/caddy run --environ --config %h/.config/caddy/caddyConfig.yaml --adapter yaml
 ExecReload=%h/.local/bin/caddy reload --config %h/.config/caddy/caddyConfig.yaml --force --adapter yaml
 TimeoutStopSec=5s
 LimitNOFILE=1048576
 LimitNPROC=1024
-PrivateTmp=true
-ProtectSystem=full
+# By default a non-root process cannot bind to port <= 1024. The below
+# gives the rights to parent process `systemd --user`, which will then
+# percolate it downwards to caddy.service when requested.
+# This approach is better than setcap because it is bound to this user.
+# Note that on v254, enabling either PrivateTmp or ProtectSystem
+# removes this capability from the service. I don't know why.
+# Requires a log in and log out once edit is complete
+# `sudo systemctl edit user@$UID`
+# [Service]
+# AmbientCapabilities=CAP_NET_BIND_SERVICE
+AmbientCapabilities=CAP_NET_BIND_SERVICE
 
 [Install]
 WantedBy=default.target
